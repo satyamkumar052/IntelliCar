@@ -32,7 +32,7 @@ const Login = () => {
 
         .login-root {
           min-height: 100vh;
-          margin-top: -4rem;
+          margin-top: -7rem;
           background: #080a0f;
           display: flex;
           align-items: center;

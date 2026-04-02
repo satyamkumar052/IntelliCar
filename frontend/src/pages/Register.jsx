@@ -4,102 +4,102 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../store/authSlice';
 
 const Register = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        name: '', email: '', password: '', confirmPassword: '', phone: '', address: ''
-    });
-    const [errors, setErrors] = useState({});
-    const [serverError, setServerError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [focusedField, setFocusedField] = useState(null);
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirm, setShowConfirm] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '', email: '', password: '', confirmPassword: '', phone: '', address: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [focusedField, setFocusedField] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-    /* ── Validation ── */
-    const validate = () => {
-        const e = {};
-        if (!formData.name.trim()) {
-            e.name = 'Full name is required.';
-        } else if (formData.name.trim().length < 2) {
-            e.name = 'Name must be at least 2 characters.';
-        }
+  /* ── Validation ── */
+  const validate = () => {
+    const e = {};
+    if (!formData.name.trim()) {
+      e.name = 'Full name is required.';
+    } else if (formData.name.trim().length < 2) {
+      e.name = 'Name must be at least 2 characters.';
+    }
 
-        if (!formData.email.trim()) {
-            e.email = 'Email is required.';
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            e.email = 'Enter a valid email address.';
-        }
+    if (!formData.email.trim()) {
+      e.email = 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      e.email = 'Enter a valid email address.';
+    }
 
-        if (!formData.password) {
-            e.password = 'Password is required.';
-        } else if (formData.password.length < 8) {
-            e.password = 'Password must be at least 8 characters.';
-        } else if (!/[A-Z]/.test(formData.password)) {
-            e.password = 'Include at least one uppercase letter.';
-        } else if (!/[0-9]/.test(formData.password)) {
-            e.password = 'Include at least one number.';
-        }
+    if (!formData.password) {
+      e.password = 'Password is required.';
+    } else if (formData.password.length < 8) {
+      e.password = 'Password must be at least 8 characters.';
+    } else if (!/[A-Z]/.test(formData.password)) {
+      e.password = 'Include at least one uppercase letter.';
+    } else if (!/[0-9]/.test(formData.password)) {
+      e.password = 'Include at least one number.';
+    }
 
-        if (!formData.confirmPassword) {
-            e.confirmPassword = 'Please confirm your password.';
-        } else if (formData.confirmPassword !== formData.password) {
-            e.confirmPassword = 'Passwords do not match.';
-        }
+    if (!formData.confirmPassword) {
+      e.confirmPassword = 'Please confirm your password.';
+    } else if (formData.confirmPassword !== formData.password) {
+      e.confirmPassword = 'Passwords do not match.';
+    }
 
-        if (formData.phone && !/^\+?[0-9]{7,15}$/.test(formData.phone.replace(/\s/g, ''))) {
-            e.phone = 'Enter a valid phone number.';
-        }
+    if (formData.phone && !/^\+?[0-9]{7,15}$/.test(formData.phone.replace(/\s/g, ''))) {
+      e.phone = 'Enter a valid phone number.';
+    }
 
-        return e;
-    };
+    return e;
+  };
 
-    const getPasswordStrength = () => {
-        const p = formData.password;
-        if (!p) return { level: 0, label: '', color: '' };
-        let score = 0;
-        if (p.length >= 8) score++;
-        if (p.length >= 12) score++;
-        if (/[A-Z]/.test(p)) score++;
-        if (/[0-9]/.test(p)) score++;
-        if (/[^A-Za-z0-9]/.test(p)) score++;
-        if (score <= 2) return { level: score, label: 'Weak', color: '#e05555' };
-        if (score === 3) return { level: score, label: 'Fair', color: '#f0a500' };
-        if (score === 4) return { level: score, label: 'Strong', color: '#00d4aa' };
-        return { level: score, label: 'Very Strong', color: '#00d4aa' };
-    };
+  const getPasswordStrength = () => {
+    const p = formData.password;
+    if (!p) return { level: 0, label: '', color: '' };
+    let score = 0;
+    if (p.length >= 8) score++;
+    if (p.length >= 12) score++;
+    if (/[A-Z]/.test(p)) score++;
+    if (/[0-9]/.test(p)) score++;
+    if (/[^A-Za-z0-9]/.test(p)) score++;
+    if (score <= 2) return { level: score, label: 'Weak', color: '#e05555' };
+    if (score === 3) return { level: score, label: 'Fair', color: '#f0a500' };
+    if (score === 4) return { level: score, label: 'Strong', color: '#00d4aa' };
+    return { level: score, label: 'Very Strong', color: '#00d4aa' };
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setServerError('');
-        const validationErrors = validate();
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-        setIsLoading(true);
-        try {
-            const { confirmPassword, ...payload } = formData;
-            await dispatch(registerUser(payload)).unwrap();
-            navigate('/dashboard');
-        } catch (err) {
-            setServerError(err || 'Registration failed. Please try again.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setServerError('');
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const { confirmPassword, ...payload } = formData;
+      await dispatch(registerUser(payload)).unwrap();
+      navigate('/dashboard');
+    } catch (err) {
+      setServerError(err || 'Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    const strength = getPasswordStrength();
+  const strength = getPasswordStrength();
 
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
 
         .reg-root {
@@ -210,7 +210,7 @@ const Register = () => {
 
         .reg-section-label {
           font-family: 'DM Mono', monospace;
-          font-size: 0.65rem;
+          font-size: 0.7rem;
           letter-spacing: 0.2em;
           color: rgba(0,212,170,0.6);
           text-transform: uppercase;
@@ -433,7 +433,7 @@ const Register = () => {
           margin-top: 1.75rem;
           text-align: center;
           font-family: 'DM Mono', monospace;
-          font-size: 0.72rem;
+          font-size: 0.8rem;
           color: rgba(255,255,255,0.25);
           letter-spacing: 0.06em;
         }
@@ -484,250 +484,250 @@ const Register = () => {
         }
       `}</style>
 
-            <div className="reg-root">
-                <div className="reg-glow-orb reg-glow-1" />
-                <div className="reg-glow-orb reg-glow-2" />
+      <div className="reg-root">
+        <div className="reg-glow-orb reg-glow-1" />
+        <div className="reg-glow-orb reg-glow-2" />
 
-                <div className="reg-card">
-                    {/* Brand */}
-                    <div className="reg-brand-header">
-                        <div className="reg-brand-logo">
-                            <svg className="reg-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="36" height="36" rx="8" fill="rgba(0,212,170,0.1)" />
-                                <path d="M8 22L14 10L18 18L22 14L28 22" stroke="#00d4aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <circle cx="18" cy="24" r="2.5" fill="#00d4aa" opacity="0.6" />
-                                <circle cx="8" cy="22" r="1.5" fill="#00d4aa" opacity="0.4" />
-                                <circle cx="28" cy="22" r="1.5" fill="#00d4aa" opacity="0.4" />
-                            </svg>
-                            <div>
-                                <div className="reg-brand-name">Intelli<span>Car</span></div>
-                            </div>
-                        </div>
-                        <div className="reg-brand-tagline">Fleet Intelligence Platform</div>
-                    </div>
-
-                    <div className="reg-divider" />
-
-                    <div className="reg-surface">
-                        <div className="reg-section-label">Create Account</div>
-
-                        {serverError && (
-                            <div className="reg-error-box">
-                                <div className="reg-error-dot" />
-                                <p className="reg-error-text">{serverError}</p>
-                            </div>
-                        )}
-
-                        <form onSubmit={handleSubmit} noValidate>
-
-                            {/* Full Name */}
-                            <div className={`reg-field-group${focusedField === 'name' ? ' focused' : ''}${errors.name ? ' has-error' : ''}`}>
-                                <label className="reg-field-label">Full Name</label>
-                                <div className="reg-field-wrap">
-                                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                        <circle cx="8" cy="5" r="3" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                        <path d="M2 14c0-3 2-5 6-5s6 2 6 5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
-                                    </svg>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="reg-field-input"
-                                        placeholder="John Doe"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        onFocus={() => setFocusedField('name')}
-                                        onBlur={() => setFocusedField(null)}
-                                    />
-                                </div>
-                                {errors.name && <div className="reg-field-error">{errors.name}</div>}
-                            </div>
-
-                            {/* Email */}
-                            <div className={`reg-field-group${focusedField === 'email' ? ' focused' : ''}${errors.email ? ' has-error' : ''}`}>
-                                <label className="reg-field-label">Email Address</label>
-                                <div className="reg-field-wrap">
-                                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                        <rect x="1" y="3" width="14" height="10" rx="2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                        <path d="M1 6l7 4 7-4" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                    </svg>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        className="reg-field-input"
-                                        placeholder="john@example.com"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        onFocus={() => setFocusedField('email')}
-                                        onBlur={() => setFocusedField(null)}
-                                    />
-                                </div>
-                                {errors.email && <div className="reg-field-error">{errors.email}</div>}
-                            </div>
-
-                            {/* Password */}
-                            <div className={`reg-field-group${focusedField === 'password' ? ' focused' : ''}${errors.password ? ' has-error' : ''}`}>
-                                <label className="reg-field-label">Password</label>
-                                <div className="reg-field-wrap">
-                                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                        <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                        <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
-                                        <circle cx="8" cy="10.5" r="1" fill="rgba(0,212,170,1)" />
-                                    </svg>
-                                    <input
-                                        type={showPassword ? 'text' : 'password'}
-                                        name="password"
-                                        className="reg-field-input"
-                                        placeholder="Min 8 chars, 1 uppercase, 1 number"
-                                        style={{ paddingRight: '2.75rem' }}
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        onFocus={() => setFocusedField('password')}
-                                        onBlur={() => setFocusedField(null)}
-                                    />
-                                    <button type="button" className="reg-pw-toggle" onClick={() => setShowPassword(p => !p)}>
-                                        {showPassword ? (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <line x1="2" y1="2" x2="14" y2="14" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" strokeLinecap="round" />
-                                            </svg>
-                                        ) : (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                            </svg>
-                                        )}
-                                    </button>
-                                </div>
-                                {/* Strength bar */}
-                                {formData.password && (
-                                    <div className="reg-pw-strength">
-                                        <div className="reg-pw-bars">
-                                            {[1, 2, 3, 4, 5].map(i => (
-                                                <div
-                                                    key={i}
-                                                    className="reg-pw-bar"
-                                                    style={{ background: i <= strength.level ? strength.color : 'rgba(255,255,255,0.07)' }}
-                                                />
-                                            ))}
-                                        </div>
-                                        <span className="reg-pw-label" style={{ color: strength.color }}>{strength.label}</span>
-                                    </div>
-                                )}
-                                {errors.password && <div className="reg-field-error">{errors.password}</div>}
-                            </div>
-
-                            {/* Confirm Password */}
-                            <div className={`reg-field-group${focusedField === 'confirmPassword' ? ' focused' : ''}${errors.confirmPassword ? ' has-error' : ''}`}>
-                                <label className="reg-field-label">Confirm Password</label>
-                                <div className="reg-field-wrap">
-                                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                        <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                        <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
-                                        <path d="M6.5 10.5l1 1 2-2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    <input
-                                        type={showConfirm ? 'text' : 'password'}
-                                        name="confirmPassword"
-                                        className="reg-field-input"
-                                        placeholder="Re-enter your password"
-                                        style={{ paddingRight: '2.75rem' }}
-                                        value={formData.confirmPassword}
-                                        onChange={handleChange}
-                                        onFocus={() => setFocusedField('confirmPassword')}
-                                        onBlur={() => setFocusedField(null)}
-                                    />
-                                    <button type="button" className="reg-pw-toggle" onClick={() => setShowConfirm(p => !p)}>
-                                        {showConfirm ? (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <line x1="2" y1="2" x2="14" y2="14" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" strokeLinecap="round" />
-                                            </svg>
-                                        ) : (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                                <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
-                                            </svg>
-                                        )}
-                                    </button>
-                                </div>
-                                {errors.confirmPassword && <div className="reg-field-error">{errors.confirmPassword}</div>}
-                            </div>
-
-                            {/* Phone & City */}
-                            <div className="reg-grid-2">
-                                <div className={`reg-field-group${focusedField === 'phone' ? ' focused' : ''}${errors.phone ? ' has-error' : ''}`}>
-                                    <label className="reg-field-label">Phone <span style={{ opacity: 0.4 }}>(optional)</span></label>
-                                    <div className="reg-field-wrap">
-                                        <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                            <rect x="4" y="1" width="8" height="14" rx="2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                            <circle cx="8" cy="12" r="0.8" fill="rgba(0,212,170,1)" />
-                                        </svg>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            className="reg-field-input"
-                                            placeholder="9876543210"
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            onFocus={() => setFocusedField('phone')}
-                                            onBlur={() => setFocusedField(null)}
-                                        />
-                                    </div>
-                                    {errors.phone && <div className="reg-field-error">{errors.phone}</div>}
-                                </div>
-
-                                <div className={`reg-field-group${focusedField === 'address' ? ' focused' : ''}`}>
-                                    <label className="reg-field-label">City <span style={{ opacity: 0.4 }}>(optional)</span></label>
-                                    <div className="reg-field-wrap">
-                                        <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
-                                            <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.485-2.015-4.5-4.5-4.5z" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                            <circle cx="8" cy="6" r="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
-                                        </svg>
-                                        <input
-                                            type="text"
-                                            name="address"
-                                            className="reg-field-input"
-                                            placeholder="Mumbai"
-                                            value={formData.address}
-                                            onChange={handleChange}
-                                            onFocus={() => setFocusedField('address')}
-                                            onBlur={() => setFocusedField(null)}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" disabled={isLoading} className="reg-btn-submit">
-                                {isLoading ? (
-                                    <span className="reg-btn-loading">
-                                        <span className="reg-spinner" />
-                                        Registering
-                                    </span>
-                                ) : (
-                                    'Create Account'
-                                )}
-                            </button>
-                        </form>
-
-                        <div className="reg-status-bar">
-                            <div className="reg-status-indicator">
-                                <span className="reg-status-dot" />
-                                Secure connection
-                            </div>
-                            <div className="reg-version-tag">v2.4.1</div>
-                        </div>
-                    </div>
-
-                    <div className="reg-footer">
-                        Already have an account?{' '}
-                        <Link to="/login">Sign In</Link>
-                    </div>
-                </div>
+        <div className="reg-card">
+          {/* Brand */}
+          <div className="reg-brand-header">
+            <div className="reg-brand-logo">
+              <svg className="reg-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="36" rx="8" fill="rgba(0,212,170,0.1)" />
+                <path d="M8 22L14 10L18 18L22 14L28 22" stroke="#00d4aa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="18" cy="24" r="2.5" fill="#00d4aa" opacity="0.6" />
+                <circle cx="8" cy="22" r="1.5" fill="#00d4aa" opacity="0.4" />
+                <circle cx="28" cy="22" r="1.5" fill="#00d4aa" opacity="0.4" />
+              </svg>
+              <div>
+                <div className="reg-brand-name">Intelli<span>Car</span></div>
+              </div>
             </div>
-        </>
-    );
+            <div className="reg-brand-tagline">Fleet Intelligence Platform</div>
+          </div>
+
+          <div className="reg-divider" />
+
+          <div className="reg-surface">
+            <div className="reg-section-label">Create Account</div>
+
+            {serverError && (
+              <div className="reg-error-box">
+                <div className="reg-error-dot" />
+                <p className="reg-error-text">{serverError}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} noValidate>
+
+              {/* Full Name */}
+              <div className={`reg-field-group${focusedField === 'name' ? ' focused' : ''}${errors.name ? ' has-error' : ''}`}>
+                <label className="reg-field-label">Full Name</label>
+                <div className="reg-field-wrap">
+                  <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="5" r="3" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                    <path d="M2 14c0-3 2-5 6-5s6 2 6 5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                  <input
+                    type="text"
+                    name="name"
+                    className="reg-field-input"
+                    placeholder="John Doe"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('name')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </div>
+                {errors.name && <div className="reg-field-error">{errors.name}</div>}
+              </div>
+
+              {/* Email */}
+              <div className={`reg-field-group${focusedField === 'email' ? ' focused' : ''}${errors.email ? ' has-error' : ''}`}>
+                <label className="reg-field-label">Email Address</label>
+                <div className="reg-field-wrap">
+                  <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                    <rect x="1" y="3" width="14" height="10" rx="2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                    <path d="M1 6l7 4 7-4" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                  </svg>
+                  <input
+                    type="email"
+                    name="email"
+                    className="reg-field-input"
+                    placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </div>
+                {errors.email && <div className="reg-field-error">{errors.email}</div>}
+              </div>
+
+              {/* Password */}
+              <div className={`reg-field-group${focusedField === 'password' ? ' focused' : ''}${errors.password ? ' has-error' : ''}`}>
+                <label className="reg-field-label">Password</label>
+                <div className="reg-field-wrap">
+                  <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                    <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                    <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
+                    <circle cx="8" cy="10.5" r="1" fill="rgba(0,212,170,1)" />
+                  </svg>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    className="reg-field-input"
+                    placeholder="Min 8 chars, 1 uppercase, 1 number"
+                    style={{ paddingRight: '2.75rem' }}
+                    value={formData.password}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('password')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                  <button type="button" className="reg-pw-toggle" onClick={() => setShowPassword(p => !p)}>
+                    {showPassword ? (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <line x1="2" y1="2" x2="14" y2="14" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" strokeLinecap="round" />
+                      </svg>
+                    ) : (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {/* Strength bar */}
+                {formData.password && (
+                  <div className="reg-pw-strength">
+                    <div className="reg-pw-bars">
+                      {[1, 2, 3, 4, 5].map(i => (
+                        <div
+                          key={i}
+                          className="reg-pw-bar"
+                          style={{ background: i <= strength.level ? strength.color : 'rgba(255,255,255,0.07)' }}
+                        />
+                      ))}
+                    </div>
+                    <span className="reg-pw-label" style={{ color: strength.color }}>{strength.label}</span>
+                  </div>
+                )}
+                {errors.password && <div className="reg-field-error">{errors.password}</div>}
+              </div>
+
+              {/* Confirm Password */}
+              <div className={`reg-field-group${focusedField === 'confirmPassword' ? ' focused' : ''}${errors.confirmPassword ? ' has-error' : ''}`}>
+                <label className="reg-field-label">Confirm Password</label>
+                <div className="reg-field-wrap">
+                  <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                    <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                    <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M6.5 10.5l1 1 2-2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <input
+                    type={showConfirm ? 'text' : 'password'}
+                    name="confirmPassword"
+                    className="reg-field-input"
+                    placeholder="Re-enter your password"
+                    style={{ paddingRight: '2.75rem' }}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('confirmPassword')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                  <button type="button" className="reg-pw-toggle" onClick={() => setShowConfirm(p => !p)}>
+                    {showConfirm ? (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <line x1="2" y1="2" x2="14" y2="14" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" strokeLinecap="round" />
+                      </svg>
+                    ) : (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                        <circle cx="8" cy="8" r="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {errors.confirmPassword && <div className="reg-field-error">{errors.confirmPassword}</div>}
+              </div>
+
+              {/* Phone & City */}
+              <div className="reg-grid-2">
+                <div className={`reg-field-group${focusedField === 'phone' ? ' focused' : ''}${errors.phone ? ' has-error' : ''}`}>
+                  <label className="reg-field-label">Phone <span style={{ opacity: 0.4 }}>(optional)</span></label>
+                  <div className="reg-field-wrap">
+                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                      <rect x="4" y="1" width="8" height="14" rx="2" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                      <circle cx="8" cy="12" r="0.8" fill="rgba(0,212,170,1)" />
+                    </svg>
+                    <input
+                      type="tel"
+                      name="phone"
+                      className="reg-field-input"
+                      placeholder="9876543210"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField('phone')}
+                      onBlur={() => setFocusedField(null)}
+                    />
+                  </div>
+                  {errors.phone && <div className="reg-field-error">{errors.phone}</div>}
+                </div>
+
+                <div className={`reg-field-group${focusedField === 'address' ? ' focused' : ''}`}>
+                  <label className="reg-field-label">City <span style={{ opacity: 0.4 }}>(optional)</span></label>
+                  <div className="reg-field-wrap">
+                    <svg className="reg-field-icon" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.485-2.015-4.5-4.5-4.5z" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                      <circle cx="8" cy="6" r="1.5" stroke="rgba(0,212,170,1)" strokeWidth="1.2" />
+                    </svg>
+                    <input
+                      type="text"
+                      name="address"
+                      className="reg-field-input"
+                      placeholder="Mumbai"
+                      value={formData.address}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField('address')}
+                      onBlur={() => setFocusedField(null)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" disabled={isLoading} className="reg-btn-submit">
+                {isLoading ? (
+                  <span className="reg-btn-loading">
+                    <span className="reg-spinner" />
+                    Registering
+                  </span>
+                ) : (
+                  'Create Account'
+                )}
+              </button>
+            </form>
+
+            <div className="reg-status-bar">
+              <div className="reg-status-indicator">
+                <span className="reg-status-dot" />
+                Secure connection
+              </div>
+              <div className="reg-version-tag">v2.4.1</div>
+            </div>
+          </div>
+
+          <div className="reg-footer">
+            Already have an account?{' '}
+            <Link to="/login">Sign In</Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Register;
