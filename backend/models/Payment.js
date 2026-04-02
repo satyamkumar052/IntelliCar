@@ -16,6 +16,7 @@ const paymentSchema = new mongoose.Schema({
     default: 'completed'
   },
   transactionId: { type: String },
+  note: { type: String, default: '' },
   date: { type: Date, default: Date.now }
 }, { timestamps: true });
 

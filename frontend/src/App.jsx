@@ -11,6 +11,7 @@ import Documents from './pages/Documents';
 import Recommendation from './pages/Recommendation';
 import LocationFinder from './pages/LocationFinder';
 import Chatbot from './pages/Chatbot';
+import PaymentTracker from './pages/PaymentTracker';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setLoading } from './store/authSlice';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/recommend" element={<Recommendation />} />
             <Route path="/location" element={<LocationFinder />} />
             <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/payments" element={<PaymentTracker />} />
           </Route>
         </Routes>
       </main>

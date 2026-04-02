@@ -45,6 +45,7 @@ const Navbar = () => {
                 ['/recommend', 'AI MATCH'],
                 ['/location', 'LOCATOR'],
                 ['/chatbot', 'CHAT'],
+                ['/payments', 'PAYMENTS'],
               ].map(([to, label]) => (
                 <Link
                   key={to}
