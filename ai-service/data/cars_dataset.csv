@@ -1,0 +1,449 @@
+brand,model,purpose,budget_range,fuel_type,seating,price,rating
+Maruti,Swift,Commute,Low,Petrol,5,600000,4.2
+Hyundai,i20,Commute,Medium,Petrol,5,750000,4.3
+Tata,Nexon,Family,Medium,Petrol,5,900000,4.6
+Mahindra,XUV700,Family,High,Diesel,7,1800000,4.8
+Kia,Seltos,Family,Medium,Diesel,5,1200000,4.5
+Toyota,Innova,Family,High,Diesel,7,2000000,4.7
+Honda,City,Commute,Medium,Petrol,5,1100000,4.4
+Maruti,Ertiga,Family,Medium,CNG,7,1000000,4.3
+Tata,Punch,City,Low,Petrol,5,650000,4.5
+Hyundai,Creta,Family,Medium,Petrol,5,1300000,4.6
+MG,Hector,Family,High,Diesel,5,1600000,4.4
+Skoda,Slavia,Performance,High,Petrol,5,1400000,4.6
+VW,Virtus,Performance,High,Petrol,5,1450000,4.7
+Tata,Tiago,City,Low,CNG,5,550000,4.2
+Maruti,Baleno,Commute,Low,Petrol,5,700000,4.1
+Hyundai,Verna,Performance,Medium,Petrol,5,1250000,4.5
+Kia,Sonet,City,Low,Petrol,5,800000,4.4
+Mahindra,Thar,Offroad,Medium,Diesel,4,1400000,4.6
+Tata,Harrier,Family,High,Diesel,5,1700000,4.5
+Toyota,Fortuner,Offroad,High,Diesel,7,3500000,4.7
+Honda,Amaze,Commute,Low,Petrol,5,750000,4.2
+Hyundai,Aura,City,Low,CNG,5,700000,4.1
+Renault,Kiger,City,Low,Petrol,5,650000,4.0
+Nissan,Magnite,City,Low,Petrol,5,650000,4.1
+MG,Astor,Family,Medium,Petrol,5,1200000,4.3
+Maruti,Brezza,City,Medium,Petrol,5,950000,4.4
+Tata,Safari,Family,High,Diesel,7,2000000,4.6
+Jeep,Compass,Offroad,High,Diesel,5,2200000,4.5
+Kia,Carens,Family,Medium,Diesel,7,1250000,4.4
+Hyundai,Venue,City,Medium,Petrol,5,850000,4.3
+Mahindra,Scorpio,Offroad,Medium,Diesel,7,1500000,4.6
+Maruti,GrandVitara,Family,Medium,Hybrid,5,1100000,4.5
+Toyota,Hyryder,Family,Medium,Hybrid,5,1200000,4.4
+VW,Taigun,Performance,Medium,Petrol,5,1300000,4.5
+Skoda,Kushaq,Performance,Medium,Petrol,5,1250000,4.4
+Tata,Altroz,Commute,Low,Diesel,5,750000,4.5
+Hyundai,Tucson,Family,High,Diesel,5,2800000,4.7
+Citroen,C3,City,Low,Petrol,5,650000,4.0
+Toyota,Camry,Luxury,High,Hybrid,5,4500000,4.8
+Honda,Elevate,Family,Medium,Petrol,5,1200000,4.4
+Maruti,Jimny,Offroad,Medium,Petrol,4,1300000,4.3
+Mahindra,XUV300,City,Medium,Petrol,5,900000,4.5
+Tata,Tigor,City,Low,CNG,5,650000,4.2
+Hyundai,Alcazar,Family,High,Diesel,7,1800000,4.5
+Kia,EV6,Performance,High,Electric,5,6500000,4.8
+Tata,NexonEV,City,Medium,Electric,5,1500000,4.6
+MG,ZSEV,City,High,Electric,5,2200000,4.5
+Hyundai,Ioniq5,Luxury,High,Electric,5,4600000,4.9
+BYD,Atto3,Family,High,Electric,5,3400000,4.6
+Volvo,XC40Recharge,Luxury,High,Electric,5,5500000,4.8
+Chevrolet,Chevelle malibu,Family,Medium,Petrol,5,1050000,4.0
+Buick,Skylark 320,Performance,Medium,Petrol,5,1250000,4.1
+Plymouth,Satellite,City,Medium,Petrol,5,1200000,4.3
+Amc,Rebel sst,City,Medium,Petrol,5,1200000,4.0
+Ford,Torino,City,Medium,Petrol,5,950000,4.4
+Ford,Galaxie 500,Performance,Medium,Petrol,5,850000,4.7
+Chevrolet,Impala,Performance,Medium,Petrol,5,950000,4.2
+Plymouth,Fury iii,Performance,Medium,Petrol,5,1000000,4.3
+Pontiac,Catalina,Performance,Medium,Petrol,5,1200000,4.2
+Amc,Ambassador dpl,Performance,Medium,Petrol,5,800000,4.1
+Dodge,Challenger se,Performance,Medium,Petrol,5,1000000,4.6
+Plymouth,'cuda 340,Performance,Medium,Petrol,5,1000000,4.5
+Chevrolet,Monte carlo,Family,Medium,Petrol,5,850000,4.4
+Buick,Estate wagon (sw),Performance,Medium,Petrol,5,900000,4.3
+Toyota,Corona mark ii,City,Low,Petrol,5,500000,4.8
+Plymouth,Duster,City,Medium,Petrol,5,1150000,4.1
+Amc,Hornet,City,Medium,Petrol,5,950000,4.2
+Ford,Maverick,City,Medium,Petrol,5,1250000,4.5
+Datsun,Pl510,City,Low,Petrol,5,650000,4.0
+Volkswagen,1131 deluxe sedan,City,High,Petrol,5,1750000,4.7
+Peugeot,504,City,High,Petrol,5,2250000,4.6
+Audi,100 ls,City,High,Petrol,5,1800000,4.1
+Saab,99e,City,High,Petrol,5,2000000,4.8
+Bmw,2002,City,High,Petrol,5,2150000,4.8
+Amc,Gremlin,City,Medium,Petrol,5,1000000,4.3
+Ford,F250,Performance,Medium,Petrol,5,750000,4.3
+Chevy,C20,Performance,Medium,Petrol,5,750000,4.6
+Dodge,D200,Performance,Medium,Petrol,5,800000,4.2
+Hi,1200d,Performance,Medium,Petrol,5,750000,4.1
+Datsun,Pl510,City,Low,Petrol,5,500000,4.7
+Chevrolet,Vega 2300,City,Medium,Petrol,5,1150000,4.4
+Toyota,Corona,City,Low,Petrol,5,500000,4.7
+Ford,Pinto,City,Medium,Petrol,5,1250000,4.4
+Amc,Gremlin,City,Medium,Petrol,5,750000,4.8
+Plymouth,Satellite custom,City,Medium,Petrol,5,900000,4.6
+Chevrolet,Chevelle malibu,City,Medium,Petrol,5,900000,4.0
+Ford,Torino 500,City,Medium,Petrol,5,800000,4.2
+Amc,Matador,City,Medium,Petrol,5,900000,4.2
+Chevrolet,Impala,Performance,Medium,Petrol,5,1250000,4.5
+Pontiac,Catalina brougham,Performance,Medium,Petrol,5,800000,4.5
+Ford,Galaxie 500,Performance,Medium,Petrol,5,950000,4.2
+Plymouth,Fury iii,Family,Medium,Petrol,5,1200000,4.1
+Dodge,Monaco (sw),Performance,Medium,Petrol,5,800000,4.7
+Ford,Country squire (sw),Performance,Medium,Petrol,5,1050000,4.5
+Pontiac,Safari (sw),Performance,Medium,Petrol,5,1250000,4.6
+Amc,Hornet sportabout (sw),City,Medium,Petrol,5,1050000,4.6
+Chevrolet,Vega (sw),City,Medium,Petrol,5,950000,4.6
+Pontiac,Firebird,City,Medium,Petrol,5,1150000,4.4
+Ford,Mustang,City,Medium,Petrol,5,900000,4.4
+Mercury,Capri 2000,City,Medium,Petrol,5,1050000,4.5
+Opel,1900,City,High,Petrol,5,1750000,4.4
+Peugeot,304,City,High,Petrol,5,2150000,4.3
+Fiat,124b,City,High,Petrol,5,2050000,4.3
+Toyota,Corolla 1200,City,Low,Petrol,5,700000,4.6
+Datsun,1200,City,Low,Petrol,5,550000,4.7
+Volkswagen,Model 111,City,High,Petrol,5,1900000,4.2
+Plymouth,Cricket,City,Medium,Petrol,5,950000,4.4
+Toyota,Corona hardtop,City,Low,Petrol,5,750000,4.3
+Dodge,Colt hardtop,City,Medium,Petrol,5,900000,4.8
+Volkswagen,Type 3,City,High,Petrol,5,2150000,4.5
+Chevrolet,Vega,City,Medium,Petrol,5,750000,4.4
+Ford,Pinto runabout,City,Medium,Petrol,5,800000,4.5
+Chevrolet,Impala,Performance,Medium,Petrol,5,1000000,4.7
+Pontiac,Catalina,Performance,Medium,Petrol,5,750000,4.8
+Plymouth,Fury iii,Family,Medium,Petrol,5,1050000,4.2
+Ford,Galaxie 500,Performance,Medium,Petrol,5,750000,4.3
+Amc,Ambassador sst,Family,Medium,Petrol,5,1100000,4.1
+Mercury,Marquis,Performance,Medium,Petrol,5,1100000,4.6
+Buick,Lesabre custom,Performance,Medium,Petrol,5,1250000,4.6
+Oldsmobile,Delta 88 royale,Performance,Medium,Petrol,5,900000,4.3
+Chrysler,Newport royal,Performance,Medium,Petrol,5,750000,4.2
+Mazda,Rx2 coupe,City,Low,Petrol,5,550000,4.5
+Amc,Matador (sw),Family,Medium,Petrol,5,1100000,4.8
+Chevrolet,Chevelle concours (sw),Family,Medium,Petrol,5,1100000,4.7
+Ford,Gran torino (sw),Family,Medium,Petrol,5,750000,4.4
+Plymouth,Satellite custom (sw),Family,Medium,Petrol,5,800000,4.8
+Volvo,145e (sw),City,High,Petrol,5,2050000,4.4
+Volkswagen,411 (sw),City,High,Petrol,5,1950000,4.2
+Peugeot,504 (sw),City,High,Petrol,5,1800000,4.6
+Renault,12 (sw),City,High,Petrol,5,1800000,4.2
+Ford,Pinto (sw),City,Medium,Petrol,5,900000,4.4
+Datsun,510 (sw),City,Low,Petrol,5,650000,4.7
+Toyouta,Corona mark ii (sw),City,Low,Petrol,5,250000,4.3
+Dodge,Colt (sw),City,Medium,Petrol,5,750000,4.4
+Toyota,Corolla 1600 (sw),City,Low,Petrol,5,550000,4.3
+Buick,Century 350,Performance,Medium,Petrol,5,1100000,4.3
+Amc,Matador,Family,Medium,Petrol,5,1250000,4.6
+Chevrolet,Malibu,Family,Medium,Petrol,5,850000,4.4
+Ford,Gran torino,Family,Medium,Petrol,5,1100000,4.7
+Dodge,Coronet custom,Family,Medium,Petrol,5,850000,4.5
+Mercury,Marquis brougham,Performance,Medium,Petrol,5,1100000,4.6
+Chevrolet,Caprice classic,Family,Medium,Petrol,5,1200000,4.6
+Ford,Ltd,Performance,Medium,Petrol,5,950000,4.5
+Plymouth,Fury gran sedan,Family,Medium,Petrol,5,800000,4.6
+Chrysler,New yorker brougham,Performance,Medium,Petrol,5,950000,4.6
+Buick,Electra 225 custom,Performance,Medium,Petrol,5,800000,4.4
+Amc,Ambassador brougham,Performance,Medium,Petrol,5,900000,4.1
+Plymouth,Valiant,City,Medium,Petrol,5,950000,4.2
+Chevrolet,Nova custom,City,Medium,Petrol,5,900000,4.6
+Amc,Hornet,City,Medium,Petrol,5,900000,4.6
+Ford,Maverick,City,Medium,Petrol,5,750000,4.1
+Plymouth,Duster,City,Medium,Petrol,5,1200000,4.1
+Volkswagen,Super beetle,City,High,Petrol,5,1850000,4.4
+Chevrolet,Impala,Family,Medium,Petrol,5,800000,4.3
+Ford,Country,Performance,Medium,Petrol,5,850000,4.7
+Plymouth,Custom suburb,Performance,Medium,Petrol,5,850000,4.3
+Oldsmobile,Vista cruiser,Performance,Medium,Petrol,5,750000,4.4
+Amc,Gremlin,City,Medium,Petrol,5,750000,4.3
+Toyota,Carina,City,Low,Petrol,5,350000,4.5
+Chevrolet,Vega,City,Medium,Petrol,5,800000,4.2
+Datsun,610,City,Low,Petrol,5,450000,4.0
+Maxda,Rx3,City,Low,Petrol,5,250000,4.8
+Ford,Pinto,City,Medium,Petrol,5,950000,4.3
+Mercury,Capri v6,City,Medium,Petrol,5,1250000,4.8
+Fiat,124 sport coupe,City,High,Petrol,5,1750000,4.5
+Chevrolet,Monte carlo s,Family,Medium,Petrol,5,1050000,4.5
+Pontiac,Grand prix,Performance,Medium,Petrol,5,1200000,4.2
+Fiat,128,City,High,Petrol,5,2150000,4.2
+Opel,Manta,City,High,Petrol,5,2000000,4.3
+Audi,100ls,City,High,Petrol,5,1750000,4.4
+Volvo,144ea,City,High,Petrol,5,2250000,4.1
+Dodge,Dart custom,City,Medium,Petrol,5,900000,4.3
+Saab,99le,City,High,Petrol,5,2200000,4.1
+Toyota,Mark ii,City,Low,Petrol,5,250000,4.1
+Oldsmobile,Omega,Performance,Medium,Petrol,5,1100000,4.4
+Plymouth,Duster,City,Medium,Petrol,5,1050000,4.8
+Ford,Maverick,City,Medium,Petrol,5,950000,4.7
+Amc,Hornet,City,Medium,Petrol,5,1250000,4.6
+Chevrolet,Nova,City,Medium,Petrol,5,1200000,4.2
+Datsun,B210,City,Low,Petrol,5,600000,4.5
+Ford,Pinto,City,Medium,Petrol,5,1000000,4.4
+Toyota,Corolla 1200,City,Low,Petrol,5,650000,4.5
+Chevrolet,Vega,City,Medium,Petrol,5,950000,4.6
+Chevrolet,Chevelle malibu classic,Family,Medium,Petrol,5,1200000,4.2
+Amc,Matador,Family,Medium,Petrol,5,750000,4.0
+Plymouth,Satellite sebring,Family,Medium,Petrol,5,1050000,4.3
+Ford,Gran torino,Family,Medium,Petrol,5,1200000,4.0
+Buick,Century luxus (sw),Family,Medium,Petrol,5,850000,4.5
+Dodge,Coronet custom (sw),Family,Medium,Petrol,5,950000,4.6
+Ford,Gran torino (sw),Family,Medium,Petrol,5,1150000,4.1
+Amc,Matador (sw),Family,Medium,Petrol,5,800000,4.3
+Audi,Fox,City,High,Petrol,5,1900000,4.6
+Volkswagen,Dasher,City,High,Petrol,5,1800000,4.3
+Opel,Manta,City,High,Petrol,5,1900000,4.4
+Toyota,Corona,City,Low,Petrol,5,450000,4.1
+Datsun,710,City,Low,Petrol,5,750000,4.5
+Dodge,Colt,City,Medium,Petrol,5,950000,4.2
+Fiat,128,City,High,Petrol,5,2200000,4.6
+Fiat,124 tc,City,High,Petrol,5,1750000,4.2
+Honda,Civic,City,Low,Petrol,5,400000,4.2
+Subaru,Base,City,Low,Petrol,5,600000,4.3
+Fiat,X1.9,City,High,Petrol,5,1950000,4.6
+Plymouth,Valiant custom,City,Medium,Petrol,5,1200000,4.7
+Chevrolet,Nova,City,Medium,Petrol,5,1250000,4.8
+Mercury,Monarch,City,Medium,Petrol,5,800000,4.1
+Ford,Maverick,City,Medium,Petrol,5,1050000,4.5
+Pontiac,Catalina,Performance,Medium,Petrol,5,1100000,4.2
+Chevrolet,Bel air,Family,Medium,Petrol,5,1150000,4.6
+Plymouth,Grand fury,Family,Medium,Petrol,5,750000,4.6
+Ford,Ltd,Family,Medium,Petrol,5,1150000,4.5
+Buick,Century,Family,Medium,Petrol,5,850000,4.3
+Chevroelt,Chevelle malibu,Family,Medium,Petrol,5,850000,4.2
+Amc,Matador,Family,Medium,Petrol,5,1000000,4.3
+Plymouth,Fury,Family,Medium,Petrol,5,1200000,4.1
+Buick,Skyhawk,City,Medium,Petrol,5,1100000,4.4
+Chevrolet,Monza 2+2,City,Medium,Petrol,5,1100000,4.3
+Ford,Mustang ii,City,Medium,Petrol,5,1200000,4.4
+Toyota,Corolla,City,Low,Petrol,5,250000,4.4
+Ford,Pinto,City,Medium,Petrol,5,1000000,4.2
+Amc,Gremlin,City,Medium,Petrol,5,1150000,4.5
+Pontiac,Astro,City,Medium,Petrol,5,950000,4.2
+Toyota,Corona,City,Low,Petrol,5,600000,4.3
+Volkswagen,Dasher,City,High,Petrol,5,2050000,4.1
+Datsun,710,City,Low,Petrol,5,350000,4.6
+Ford,Pinto,City,Medium,Petrol,5,1250000,4.5
+Volkswagen,Rabbit,City,High,Petrol,5,1800000,4.3
+Amc,Pacer,City,Medium,Petrol,5,750000,4.6
+Audi,100ls,City,High,Petrol,5,1750000,4.7
+Peugeot,504,City,High,Petrol,5,2200000,4.6
+Volvo,244dl,City,High,Petrol,5,1950000,4.2
+Saab,99le,City,High,Petrol,5,2200000,4.7
+Honda,Civic cvcc,City,Low,Petrol,5,250000,4.2
+Fiat,131,City,High,Petrol,5,1900000,4.6
+Opel,1900,City,High,Petrol,5,1950000,4.0
+Capri,Ii,City,Medium,Petrol,5,1000000,4.1
+Dodge,Colt,City,Medium,Petrol,5,850000,4.0
+Renault,12tl,City,High,Petrol,5,2250000,4.5
+Chevrolet,Chevelle malibu classic,Family,Medium,Petrol,5,1100000,4.3
+Dodge,Coronet brougham,Family,Medium,Petrol,5,1250000,4.6
+Amc,Matador,Family,Medium,Petrol,5,1100000,4.7
+Ford,Gran torino,Performance,Medium,Petrol,5,1050000,4.8
+Plymouth,Valiant,City,Medium,Petrol,5,850000,4.6
+Chevrolet,Nova,City,Medium,Petrol,5,1200000,4.6
+Ford,Maverick,City,Medium,Petrol,5,1100000,4.5
+Amc,Hornet,City,Medium,Petrol,5,900000,4.2
+Chevrolet,Chevette,City,Medium,Petrol,5,1200000,4.6
+Chevrolet,Woody,City,Medium,Petrol,5,1050000,4.7
+Vw,Rabbit,City,High,Petrol,5,2150000,4.6
+Honda,Civic,City,Low,Petrol,5,250000,4.1
+Dodge,Aspen se,Family,Medium,Petrol,5,1000000,4.6
+Ford,Granada ghia,Family,Medium,Petrol,5,1100000,4.8
+Pontiac,Ventura sj,Family,Medium,Petrol,5,950000,4.3
+Amc,Pacer d/l,City,Medium,Petrol,5,1050000,4.2
+Volkswagen,Rabbit,City,High,Petrol,5,1800000,4.4
+Datsun,B-210,City,Low,Petrol,5,700000,4.6
+Toyota,Corolla,City,Low,Petrol,5,400000,4.7
+Ford,Pinto,City,Medium,Petrol,5,750000,4.3
+Volvo,245,City,High,Petrol,5,1950000,4.3
+Plymouth,Volare premier v8,Family,Medium,Petrol,5,850000,4.5
+Peugeot,504,City,High,Petrol,5,2050000,4.4
+Toyota,Mark ii,City,Low,Petrol,5,400000,4.2
+Mercedes-benz,280s,Family,High,Petrol,5,1950000,4.0
+Cadillac,Seville,Performance,Medium,Petrol,5,1050000,4.7
+Chevy,C10,Family,Medium,Petrol,5,900000,4.2
+Ford,F108,Family,Medium,Petrol,5,850000,4.3
+Dodge,D100,Family,Medium,Petrol,5,1050000,4.7
+Honda,Accord cvcc,City,Low,Petrol,5,750000,4.1
+Buick,Opel isuzu deluxe,City,Medium,Petrol,5,1200000,4.6
+Renault,5 gtl,City,High,Petrol,5,1950000,4.2
+Plymouth,Arrow gs,City,Medium,Petrol,5,1050000,4.5
+Datsun,F-10 hatchback,City,Low,Petrol,5,300000,4.8
+Chevrolet,Caprice classic,Family,Medium,Petrol,5,1150000,4.3
+Oldsmobile,Cutlass supreme,Family,Medium,Petrol,5,950000,4.2
+Dodge,Monaco brougham,Family,Medium,Petrol,5,1250000,4.1
+Mercury,Cougar brougham,Family,Medium,Petrol,5,900000,4.5
+Chevrolet,Concours,Family,Medium,Petrol,5,1200000,4.8
+Buick,Skylark,City,Medium,Petrol,5,1150000,4.3
+Plymouth,Volare custom,Family,Medium,Petrol,5,1200000,4.2
+Ford,Granada,Family,Medium,Petrol,5,900000,4.0
+Pontiac,Grand prix lj,Performance,Medium,Petrol,5,800000,4.5
+Chevrolet,Monte carlo landau,Performance,Medium,Petrol,5,1200000,4.5
+Chrysler,Cordoba,Performance,Medium,Petrol,5,1000000,4.0
+Ford,Thunderbird,Family,Medium,Petrol,5,1150000,4.1
+Volkswagen,Rabbit custom,City,High,Petrol,5,2200000,4.1
+Pontiac,Sunbird coupe,City,Medium,Petrol,5,1000000,4.2
+Toyota,Corolla liftback,City,Low,Petrol,5,450000,4.7
+Ford,Mustang ii 2+2,City,Medium,Petrol,5,950000,4.3
+Chevrolet,Chevette,City,Medium,Petrol,5,1050000,4.8
+Dodge,Colt m/m,City,Medium,Petrol,5,800000,4.7
+Subaru,Dl,City,Low,Petrol,5,400000,4.8
+Volkswagen,Dasher,City,High,Petrol,5,2250000,4.1
+Datsun,810,City,Low,Petrol,5,600000,4.1
+Bmw,320i,City,High,Petrol,5,1850000,4.5
+Mazda,Rx-4,City,Low,Petrol,5,600000,4.5
+Volkswagen,Rabbit custom diesel,City,High,Petrol,5,1800000,4.8
+Ford,Fiesta,City,Medium,Petrol,5,950000,4.1
+Mazda,Glc deluxe,City,Low,Petrol,5,400000,4.3
+Datsun,B210 gx,City,Low,Petrol,5,350000,4.7
+Honda,Civic cvcc,City,Low,Petrol,5,300000,4.6
+Oldsmobile,Cutlass salon brougham,City,Medium,Petrol,5,1200000,4.1
+Dodge,Diplomat,Family,Medium,Petrol,5,900000,4.2
+Mercury,Monarch ghia,Family,Medium,Petrol,5,1150000,4.2
+Pontiac,Phoenix lj,Family,Medium,Petrol,5,1150000,4.6
+Chevrolet,Malibu,City,Medium,Petrol,5,1000000,4.1
+Ford,Fairmont (auto),City,Medium,Petrol,5,1150000,4.7
+Ford,Fairmont (man),City,Medium,Petrol,5,1200000,4.2
+Plymouth,Volare,City,Medium,Petrol,5,1250000,4.5
+Amc,Concord,City,Medium,Petrol,5,1000000,4.3
+Buick,Century special,City,Medium,Petrol,5,800000,4.6
+Mercury,Zephyr,City,Medium,Petrol,5,900000,4.2
+Dodge,Aspen,Family,Medium,Petrol,5,950000,4.6
+Amc,Concord d/l,City,Medium,Petrol,5,1250000,4.2
+Chevrolet,Monte carlo landau,City,Medium,Petrol,5,900000,4.4
+Buick,Regal sport coupe (turbo),Performance,Medium,Petrol,5,800000,4.2
+Ford,Futura,City,Medium,Petrol,5,1250000,4.5
+Dodge,Magnum xe,Family,Medium,Petrol,5,1000000,4.0
+Chevrolet,Chevette,City,Medium,Petrol,5,1100000,4.5
+Toyota,Corona,City,Low,Petrol,5,350000,4.4
+Datsun,510,City,Low,Petrol,5,500000,4.4
+Dodge,Omni,City,Medium,Petrol,5,1250000,4.7
+Toyota,Celica gt liftback,City,Low,Petrol,5,550000,4.2
+Plymouth,Sapporo,City,Medium,Petrol,5,750000,4.5
+Oldsmobile,Starfire sx,City,Medium,Petrol,5,800000,4.4
+Datsun,200-sx,City,Low,Petrol,5,750000,4.1
+Audi,5000,City,High,Petrol,5,2150000,4.2
+Volvo,264gl,City,High,Petrol,5,1750000,4.7
+Saab,99gle,City,High,Petrol,5,2100000,4.3
+Peugeot,604sl,City,High,Petrol,5,2250000,4.5
+Volkswagen,Scirocco,City,High,Petrol,5,2100000,4.5
+Honda,Accord lx,City,Low,Petrol,5,500000,4.6
+Pontiac,Lemans v6,City,Medium,Petrol,5,750000,4.5
+Mercury,Zephyr 6,City,Medium,Petrol,5,1150000,4.2
+Ford,Fairmont 4,City,Medium,Petrol,5,1100000,4.7
+Amc,Concord dl 6,City,Medium,Petrol,5,950000,4.0
+Dodge,Aspen 6,City,Medium,Petrol,5,1250000,4.4
+Chevrolet,Caprice classic,Family,Medium,Petrol,5,1100000,4.8
+Ford,Ltd landau,Family,Medium,Petrol,5,1250000,4.5
+Mercury,Grand marquis,Family,Medium,Petrol,5,1200000,4.3
+Dodge,St. regis,Family,Medium,Petrol,5,850000,4.8
+Buick,Estate wagon (sw),Performance,Medium,Petrol,5,900000,4.4
+Ford,Country squire (sw),Family,Medium,Petrol,5,1200000,4.0
+Chevrolet,Malibu classic (sw),Family,Medium,Petrol,5,1100000,4.5
+Chrysler,Lebaron town @ country (sw),Family,Medium,Petrol,5,1100000,4.4
+Vw,Rabbit custom,City,High,Petrol,5,1950000,4.1
+Maxda,Glc deluxe,City,Low,Petrol,5,350000,4.7
+Dodge,Colt hatchback custom,City,Medium,Petrol,5,950000,4.2
+Amc,Spirit dl,City,Medium,Petrol,5,850000,4.4
+Mercedes,Benz 300d,Family,High,Petrol,5,1800000,4.1
+Cadillac,Eldorado,Family,Medium,Petrol,5,1200000,4.6
+Peugeot,504,City,High,Petrol,5,2200000,4.3
+Oldsmobile,Cutlass salon brougham,City,Medium,Petrol,5,1200000,4.5
+Plymouth,Horizon,City,Medium,Petrol,5,1100000,4.2
+Plymouth,Horizon tc3,City,Medium,Petrol,5,1000000,4.6
+Datsun,210,City,Low,Petrol,5,350000,4.1
+Fiat,Strada custom,City,High,Petrol,5,2150000,4.4
+Buick,Skylark limited,City,Medium,Petrol,5,1000000,4.2
+Chevrolet,Citation,City,Medium,Petrol,5,800000,4.4
+Oldsmobile,Omega brougham,City,Medium,Petrol,5,1000000,4.1
+Pontiac,Phoenix,City,Medium,Petrol,5,1000000,4.4
+Vw,Rabbit,City,High,Petrol,5,2100000,4.2
+Toyota,Corolla tercel,City,Low,Petrol,5,400000,4.1
+Chevrolet,Chevette,City,Medium,Petrol,5,1250000,4.2
+Datsun,310,City,Low,Petrol,5,450000,4.6
+Chevrolet,Citation,City,Medium,Petrol,5,1000000,4.7
+Ford,Fairmont,City,Medium,Petrol,5,950000,4.5
+Amc,Concord,City,Medium,Petrol,5,1050000,4.0
+Dodge,Aspen,City,Medium,Petrol,5,1100000,4.0
+Audi,4000,City,High,Petrol,5,2100000,4.4
+Toyota,Corona liftback,City,Low,Petrol,5,400000,4.4
+Mazda,626,City,Low,Petrol,5,700000,4.7
+Datsun,510 hatchback,City,Low,Petrol,5,600000,4.2
+Toyota,Corolla,City,Low,Petrol,5,300000,4.2
+Mazda,Glc,City,Low,Petrol,5,450000,4.6
+Dodge,Colt,City,Medium,Petrol,5,900000,4.4
+Datsun,210,City,Low,Petrol,5,400000,4.4
+Vw,Rabbit c (diesel),City,High,Petrol,5,2200000,4.1
+Vw,Dasher (diesel),City,High,Petrol,5,1950000,4.3
+Audi,5000s (diesel),City,High,Petrol,5,2150000,4.4
+Mercedes-benz,240d,City,High,Petrol,5,2100000,4.2
+Honda,Civic 1500 gl,City,Low,Petrol,5,500000,4.7
+Renault,Lecar deluxe,City,High,Petrol,5,1900000,4.3
+Subaru,Dl,City,Low,Petrol,5,250000,4.7
+Vokswagen,Rabbit,City,High,Petrol,5,1900000,4.3
+Datsun,280-zx,City,Low,Petrol,5,500000,4.6
+Mazda,Rx-7 gs,City,Low,Petrol,5,250000,4.6
+Triumph,Tr7 coupe,City,High,Petrol,5,2150000,4.0
+Ford,Mustang cobra,City,Medium,Petrol,5,1000000,4.6
+Honda,Accord,City,Low,Petrol,5,300000,4.2
+Plymouth,Reliant,City,Medium,Petrol,5,750000,4.2
+Buick,Skylark,City,Medium,Petrol,5,1050000,4.8
+Dodge,Aries wagon (sw),City,Medium,Petrol,5,800000,4.0
+Chevrolet,Citation,City,Medium,Petrol,5,950000,4.1
+Plymouth,Reliant,City,Medium,Petrol,5,1250000,4.3
+Toyota,Starlet,City,Low,Petrol,5,600000,4.6
+Plymouth,Champ,City,Medium,Petrol,5,750000,4.3
+Honda,Civic 1300,City,Low,Petrol,5,350000,4.1
+Subaru,Base,City,Low,Petrol,5,400000,4.6
+Datsun,210 mpg,City,Low,Petrol,5,650000,4.8
+Toyota,Tercel,City,Low,Petrol,5,300000,4.4
+Mazda,Glc 4,City,Low,Petrol,5,500000,4.5
+Plymouth,Horizon 4,City,Medium,Petrol,5,1100000,4.6
+Ford,Escort 4w,City,Medium,Petrol,5,850000,4.2
+Ford,Escort 2h,City,Medium,Petrol,5,900000,4.1
+Volkswagen,Jetta,City,High,Petrol,5,2000000,4.6
+Renault,18i,City,High,Petrol,5,2150000,4.4
+Honda,Prelude,City,Low,Petrol,5,400000,4.6
+Toyota,Corolla,City,Low,Petrol,5,650000,4.6
+Datsun,200sx,City,Low,Petrol,5,300000,4.7
+Mazda,626,City,Low,Petrol,5,250000,4.8
+Peugeot,505s turbo diesel,City,High,Petrol,5,1900000,4.2
+Volvo,Diesel,City,High,Petrol,5,2250000,4.6
+Toyota,Cressida,City,Low,Petrol,5,750000,4.3
+Datsun,810 maxima,City,Low,Petrol,5,600000,4.6
+Buick,Century,City,Medium,Petrol,5,1250000,4.5
+Oldsmobile,Cutlass ls,Family,Medium,Petrol,5,1250000,4.3
+Ford,Granada gl,City,Medium,Petrol,5,1100000,4.8
+Chrysler,Lebaron salon,City,Medium,Petrol,5,950000,4.5
+Chevrolet,Cavalier,City,Medium,Petrol,5,1100000,4.5
+Chevrolet,Cavalier wagon,City,Medium,Petrol,5,1000000,4.1
+Chevrolet,Cavalier 2-door,City,Medium,Petrol,5,750000,4.7
+Pontiac,J2000 se hatchback,City,Medium,Petrol,5,1150000,4.6
+Dodge,Aries se,City,Medium,Petrol,5,1050000,4.0
+Pontiac,Phoenix,City,Medium,Petrol,5,900000,4.4
+Ford,Fairmont futura,City,Medium,Petrol,5,1100000,4.5
+Amc,Concord dl,City,Medium,Petrol,5,750000,4.5
+Volkswagen,Rabbit l,City,High,Petrol,5,1950000,4.3
+Mazda,Glc custom l,City,Low,Petrol,5,600000,4.0
+Mazda,Glc custom,City,Low,Petrol,5,300000,4.3
+Plymouth,Horizon miser,City,Medium,Petrol,5,1050000,4.5
+Mercury,Lynx l,City,Medium,Petrol,5,1150000,4.3
+Nissan,Stanza xe,City,Low,Petrol,5,250000,4.8
+Honda,Accord,City,Low,Petrol,5,650000,4.5
+Toyota,Corolla,City,Low,Petrol,5,750000,4.3
+Honda,Civic,City,Low,Petrol,5,350000,4.2
+Honda,Civic (auto),City,Low,Petrol,5,650000,4.7
+Datsun,310 gx,City,Low,Petrol,5,600000,4.3
+Buick,Century limited,City,Medium,Petrol,5,1150000,4.3
+Oldsmobile,Cutlass ciera (diesel),City,Medium,Petrol,5,1200000,4.3
+Chrysler,Lebaron medallion,City,Medium,Petrol,5,1050000,4.2
+Ford,Granada l,City,Medium,Petrol,5,900000,4.5
+Toyota,Celica gt,City,Low,Petrol,5,600000,4.6
+Dodge,Charger 2.2,City,Medium,Petrol,5,1150000,4.2
+Chevrolet,Camaro,City,Medium,Petrol,5,1150000,4.8
+Ford,Mustang gl,City,Medium,Petrol,5,1000000,4.5
+Vw,Pickup,City,High,Petrol,5,1800000,4.3
+Dodge,Rampage,City,Medium,Petrol,5,1200000,4.6
+Ford,Ranger,City,Medium,Petrol,5,1000000,4.8
+Chevy,S-10,City,Medium,Petrol,5,1150000,4.6

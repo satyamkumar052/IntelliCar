@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+scikit-learn
+pandas
+pytesseract
+Pillow
+spacy
+nltk
+python-multipart

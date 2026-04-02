@@ -1,0 +1,14 @@
+import express from 'express';
+import { getCars, addCar, updateCar, deleteCar } from '../controllers/carController.js';
+import { protect } from '../middleware/authMiddleware.js';
+const router = express.Router();
+
+router.route('/')
+  .get(protect, getCars)
+  .post(protect, addCar);
+
+router.route('/:id')
+  .put(protect, updateCar)
+  .delete(protect, deleteCar);
+
+export default router;

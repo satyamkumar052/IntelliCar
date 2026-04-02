@@ -1,0 +1,54 @@
+{
+    "recommendations": [
+        {
+            "rank": 1,
+            "car_name": "Maruti Baleno",
+            "confidence_score": 100.0,
+            "brand": "Maruti",
+            "model": "Baleno",
+            "price_inr": 700000.0,
+            "rating": 4.1,
+            "reasoning": "This Maruti Baleno is suitable for Commute and falls into the Low budget range. It runs on Petrol and has 5 seats."
+        },
+        {
+            "rank": 2,
+            "car_name": "Honda Amaze",
+            "confidence_score": 100.0,
+            "brand": "Honda",
+            "model": "Amaze",
+            "price_inr": 750000.0,
+            "rating": 4.2,
+            "reasoning": "This Honda Amaze is suitable for Commute and falls into the Low budget range. It runs on Petrol and has 5 seats."
+        },
+        {
+            "rank": 3,
+            "car_name": "Maruti Swift",
+            "confidence_score": 100.0,
+            "brand": "Maruti",
+            "model": "Swift",
+            "price_inr": 600000.0,
+            "rating": 4.2,
+            "reasoning": "This Maruti Swift is suitable for Commute and falls into the Low budget range. It runs on Petrol and has 5 seats."
+        },
+        {
+            "rank": 4,
+            "car_name": "Skoda Slavia",
+            "confidence_score": 50.07,
+            "brand": "Skoda",
+            "model": "Slavia",
+            "price_inr": 1400000.0,
+            "rating": 4.6,
+            "reasoning": "This Skoda Slavia is suitable for Performance and falls into the High budget range. It runs on Petrol and has 5 seats."
+        },
+        {
+            "rank": 5,
+            "car_name": "Tata Altroz",
+            "confidence_score": 75.07,
+            "brand": "Tata",
+            "model": "Altroz",
+            "price_inr": 750000.0,
+            "rating": 4.5,
+            "reasoning": "This Tata Altroz is suitable for Commute and falls into the Low budget range. It runs on Diesel and has 5 seats."
+        }
+    ]
+}

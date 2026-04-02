@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-gray-100 font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-wide;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-gradient text-surface-lowest px-6 py-3 rounded-md uppercase font-heading font-bold text-sm tracking-widest relative overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow z-10;
+  }
+  .btn-primary::after {
+    content: '';
+    @apply absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 ease-out -z-10;
+  }
+  .btn-primary:hover::after {
+    @apply translate-y-0;
+  }
+  .btn-secondary {
+    @apply bg-surface-container-highest border border-outline-variant/15 text-primary px-6 py-3 rounded-md uppercase font-heading font-bold text-sm tracking-widest hover:bg-surface-bright/50 transition-colors;
+  }
+  .glass-card {
+    @apply bg-surface-container-high rounded-xl backdrop-blur-xl border border-outline-variant/10 shadow-glow relative overflow-hidden z-10;
+  }
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none -z-10;
+  }
+  .glass-nav {
+    @apply bg-surface-lowest/80 backdrop-blur-[20px] border-b border-surface-container-high/50;
+  }
+  .input-glow {
+    @apply bg-transparent border-b border-outline-variant/15 outline-none px-0 py-2 text-white placeholder-gray-500 focus:border-primary transition-all duration-300;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090e1c;
+}
+::-webkit-scrollbar-thumb {
+  background: #25293a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #343949;
+}
