@@ -33,8 +33,8 @@ const Register = () => {
 
     if (!formData.password) {
       e.password = 'Password is required.';
-    } else if (formData.password.length < 8) {
-      e.password = 'Password must be at least 8 characters.';
+    } else if (formData.password.length < 6) {
+      e.password = 'Password must be at least 6 characters.';
     } else if (!/[A-Z]/.test(formData.password)) {
       e.password = 'Include at least one uppercase letter.';
     } else if (!/[0-9]/.test(formData.password)) {
@@ -577,7 +577,7 @@ const Register = () => {
                     type={showPassword ? 'text' : 'password'}
                     name="password"
                     className="reg-field-input"
-                    placeholder="Min 8 chars, 1 uppercase, 1 number"
+                    placeholder="Min 6 chars, 1 uppercase, 1 number"
                     style={{ paddingRight: '2.75rem' }}
                     value={formData.password}
                     onChange={handleChange}
