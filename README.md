@@ -23,7 +23,7 @@ A full-stack, production-ready car management system with AI-driven recommendati
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/intellicar.git
+git clone https://github.com/satyamkumar052/IntelliCar.git
 cd intellicar
 ```
 
