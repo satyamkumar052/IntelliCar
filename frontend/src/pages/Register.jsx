@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../store/authSlice';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -88,8 +89,10 @@ const Register = () => {
       const { confirmPassword, ...payload } = formData;
       await dispatch(registerUser(payload)).unwrap();
       navigate('/dashboard');
+      toast.success('Registered successfully!');
     } catch (err) {
       setServerError(err || 'Registration failed. Please try again.');
+      toast.error(err || 'Registration failed.');
     } finally {
       setIsLoading(false);
     }

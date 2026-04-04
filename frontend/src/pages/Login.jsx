@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../store/authSlice';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,8 +19,10 @@ const Login = () => {
     try {
       await dispatch(loginUser({ email: formData.email, password: formData.password })).unwrap();
       navigate('/dashboard');
+      toast.success('Logged in successfully!');
     } catch (err) {
       setError(err || 'Authentication error.');
+      toast.error(err || 'Authentication error.');
     } finally {
       setIsLoading(false);
     }

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store/authSlice';
 import { Car, LogOut, Menu } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const { user } = useSelector(state => state.auth);
@@ -11,6 +12,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
+    toast.info('Logged out successfully.');
   };
 
   const initials = user?.name

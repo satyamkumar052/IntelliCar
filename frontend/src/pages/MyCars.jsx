@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { Loader2, Plus, Trash2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const MyCars = () => {
   const [cars, setCars] = useState([]);
@@ -33,8 +34,9 @@ const MyCars = () => {
       setShowForm(false);
       setFormData({ brand: '', model: '', year: '', registrationNumber: '' });
       fetchCars();
+      toast.success('Vehicle added successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || err.message || "Error adding car.");
+      toast.error(err.response?.data?.message || err.message || "Error adding car.");
     }
   };
 
@@ -44,8 +46,9 @@ const MyCars = () => {
       await api.delete(`/cars/${vehicleToDelete._id}`);
       setVehicleToDelete(null);
       fetchCars();
+      toast.success('Vehicle removed.');
     } catch (err) {
-      alert("Failed to delete car");
+      toast.error("Failed to delete car");
     }
   };
 

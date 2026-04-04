@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { FileText, Upload, Calendar, Bell } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const Documents = () => {
   const [cars, setCars] = useState([]);
@@ -100,9 +101,9 @@ const Documents = () => {
       });
       setReminderDoc(null);
       fetchReminders();
-      alert("Reminder successfully scheduled!");
+      toast.success("Reminder successfully scheduled!");
     } catch (err) {
-      alert("Error setting reminder. Check console.");
+      toast.error("Error setting reminder.");
     } finally {
       setReminding(false);
     }
@@ -164,36 +165,37 @@ const Documents = () => {
               documents.map(doc => {
                 const docReminder = reminders.find(r => r.document === doc._id || (r.document?._id === doc._id));
                 return (
-                <div key={doc._id} className={`glass-card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 ${doc.status === 'valid' ? 'border-primary' : 'border-red-500'}`}>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-surface-bright flex items-center justify-center text-primary shrink-0">
-                      <FileText size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-heading font-bold text-lg text-white tracking-wide">{doc.docType} Record</h3>
-                      <p className="text-xs text-secondary flex items-center gap-1 mt-1 font-mono">
-                        <Calendar size={12} /> Expiry: {new Date(doc.expiryDate).toLocaleDateString()}
-                      </p>
-                      {docReminder && (
-                        <p className="text-[10px] text-primary flex items-center gap-1 mt-1 font-bold uppercase tracking-widest bg-primary/10 px-2 py-0.5 rounded w-fit">
-                           <Bell size={10} /> Reminder: {new Date(docReminder.dueDate).toLocaleDateString()}
+                  <div key={doc._id} className={`glass-card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 ${doc.status === 'valid' ? 'border-primary' : 'border-red-500'}`}>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-lg bg-surface-bright flex items-center justify-center text-primary shrink-0">
+                        <FileText size={24} />
+                      </div>
+                      <div>
+                        <h3 className="font-heading font-bold text-lg text-white tracking-wide">{doc.docType} Record</h3>
+                        <p className="text-xs text-secondary flex items-center gap-1 mt-1 font-mono">
+                          <Calendar size={12} /> Expiry: {new Date(doc.expiryDate).toLocaleDateString()}
                         </p>
-                      )}
+                        {docReminder && (
+                          <p className="text-[10px] text-primary flex items-center gap-1 mt-1 font-bold uppercase tracking-widest bg-primary/10 px-2 py-0.5 rounded w-fit">
+                            <Bell size={10} /> Reminder: {new Date(docReminder.dueDate).toLocaleDateString()}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex gap-3 items-center self-start md:self-auto ml-16 md:ml-0">
-                    <span className={`text-xs px-2 py-1 rounded uppercase tracking-wider font-bold ${doc.status === 'valid' ? 'bg-primary/20 text-primary' : 'bg-red-500/20 text-red-500'}`}>
-                      {doc.status.replace('_', ' ')}
-                    </span>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3 items-center self-start md:self-auto ml-16 md:ml-0">
+                      <span className={`text-xs px-2 py-1 rounded uppercase tracking-wider font-bold ${doc.status === 'valid' ? 'bg-primary/20 text-primary' : 'bg-red-500/20 text-red-500'}`}>
+                        {doc.status.replace('_', ' ')}
+                      </span>
+                      <div className="flex gap-2">
                         <button onClick={() => setViewDoc(doc.fileUrl)} className="text-white hover:text-primary transition-colors text-sm font-bold bg-surface-bright px-3 py-1 rounded cursor-pointer">VIEW</button>
                         <button onClick={() => openReminderModal(doc)} className={`text-white transition-colors text-sm font-bold ${docReminder ? 'bg-red-600/40 hover:bg-red-600' : 'bg-surface-container-highest hover:bg-surface-container-high'} px-3 py-1 rounded cursor-pointer flex items-center gap-1`}>
-                            <Bell size={14} className={docReminder ? "text-white" : "text-secondary"} /> {docReminder ? 'UPDATE' : 'REMIND'}
+                          <Bell size={14} className={docReminder ? "text-white" : "text-secondary"} /> {docReminder ? 'UPDATE' : 'REMIND'}
                         </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )})
+                )
+              })
             )}
           </div>
         </div>
@@ -201,15 +203,15 @@ const Documents = () => {
 
       {/* Document View Modal */}
       {viewDoc && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setViewDoc(null)}
         >
-          <div 
+          <div
             className="relative bg-surface-container-low p-2 rounded-2xl w-11/12 max-w-5xl h-[85vh] flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <button 
+            <button
               className="absolute -top-4 -right-4 bg-red-600 rounded-full w-10 h-10 flex items-center justify-center text-white font-bold hover:bg-red-500 shadow-lg transition-transform hover:scale-110"
               onClick={() => setViewDoc(null)}
             >
@@ -232,28 +234,28 @@ const Documents = () => {
           <div className="glass-card p-8 w-11/12 max-w-md bg-surface-container-low shadow-2xl">
             <h2 className="text-2xl font-heading font-bold text-white mb-2">Set Alert: {reminderDoc.docType}</h2>
             <p className="text-secondary text-sm mb-6">Schedule an automated reminder before your document expires on {new Date(reminderDoc.expiryDate).toLocaleDateString()}.</p>
-            
+
             <form onSubmit={handleSetReminder} className="space-y-4">
               <div>
                 <label className="text-xs text-secondary uppercase tracking-wider font-bold">Reminder Date</label>
-                <input 
-                  type="date" 
-                  className="input-glow w-full mt-1 bg-surface-bright text-white" 
-                  value={reminderDate} 
-                  onChange={e => setReminderDate(e.target.value)} 
+                <input
+                  type="date"
+                  className="input-glow w-full mt-1 bg-surface-bright text-white"
+                  value={reminderDate}
+                  onChange={e => setReminderDate(e.target.value)}
                   required
                 />
               </div>
               <div className="flex gap-4 pt-2">
-                <button 
-                  type="button" 
-                  onClick={() => setReminderDoc(null)} 
+                <button
+                  type="button"
+                  onClick={() => setReminderDoc(null)}
                   className="flex-1 px-4 py-2 rounded-lg bg-surface-container-highest text-white font-bold hover:bg-surface-container-high transition-colors"
                 >
                   Cancel
                 </button>
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={reminding}
                   className="flex-1 btn-primary flex items-center justify-center gap-2"
                 >

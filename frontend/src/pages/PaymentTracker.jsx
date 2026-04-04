@@ -14,6 +14,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 const TYPE_META = {
   Service: { icon: <Receipt size={15} />, color: '#38bdf8', bg: 'rgba(56,189,248,0.08)', border: 'rgba(56,189,248,0.2)' },
@@ -76,8 +77,10 @@ const PaymentTracker = () => {
       setFormData({ carId: '', amount: '', paymentType: 'Service', status: 'completed', note: '', date: null });
       setShowForm(false);
       await fetchData();
+      toast.success('Payment added successfully!');
     } catch (err) {
       console.error(err);
+      toast.error('Failed to add payment.');
     } finally {
       setFormLoading(false);
     }

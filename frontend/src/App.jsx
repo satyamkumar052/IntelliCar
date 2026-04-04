@@ -15,7 +15,8 @@ import PaymentTracker from './pages/PaymentTracker';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setLoading } from './store/authSlice';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-surface text-gray-100 font-body">
+      <ToastContainer hideProgressBar theme="dark" position="top-center" autoClose={2000} />
       <Navbar />
       <main className="flex-grow pt-16">
         <Routes>
