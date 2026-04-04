@@ -70,6 +70,6 @@ You will need:
 - 📄 Document Vault with AI OCR (RC, Insurance, PUC)
 - 🤖 NLP Chatbot (RTO, challans, service centers)
 - 🎯 AI Car Recommendation Engine (Scikit-learn)
-- 🗺️ Location Finder (RTOs & Service Centers)
+- 🗺️ Location Finder (RTOs & Service Centers) using OpenStreetMap API
 - 🔔 Automated Expiry Email Reminders
 - 📊 Dashboard with document health charts

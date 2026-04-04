@@ -45,6 +45,11 @@ const LocationFinder = () => {
             type="text" className="input-glow w-full mt-2 bg-surface-highest text-white" 
             placeholder="e.g. 400058 or Andheri"
             value={params.pincode} onChange={e => setParams({...params, pincode: e.target.value})}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                handleSearch(e);
+              }
+            }}
           />
         </div>
         <button onClick={handleSearch} disabled={loading} className="w-full md:w-1/3 btn-primary flex items-center justify-center gap-2 mt-4 md:mt-0">
