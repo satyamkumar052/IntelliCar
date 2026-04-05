@@ -1,6 +1,5 @@
 # 🚗 IntelliCar — AI-Powered Vehicle Management Platform
-
-A full-stack, production-ready car management system with AI-driven recommendations, OCR document scanning, and an NLP chatbot.
+IntelliCar is a full-stack, production-ready vehicle management system. It leverages artificial intelligence to provide personalized car recommendations, Optical Character Recognition (OCR) for document scanning, and Natural Language Processing (NLP) for an intuitive chatbot experience, all wrapped in a sleek, modern user interface.
 
 ---
 
