@@ -37,53 +37,60 @@ IntelliCar is a full-stack, production-ready vehicle management system. It lever
 - **OCR:** Pytesseract (Tesseract OCR), Pillow
 - **NLP:** SpaCy, NLTK
 
-## 🏗️ Architecture
+---
 
-| Service | Tech | Port |
+## 🏗️ Architecture
+| Service | Technology | Default Port |
 |---|---|---|
-| Frontend | React 18 + Vite + Tailwind CSS | 5173 |
-| Backend | Node.js + Express + MongoDB | 5000 |
-| AI Service | Python + FastAPI + Scikit-learn | 8000 |
+| **Frontend** | React + Vite | `5173` |
+| **Backend** | Node.js + Express + MongoDB | `5000` |
+| **AI Service** | Python + FastAPI | `8000` |
 
 ---
 
-## ⚡ Quick Start (Local)
-
+## ⚡ Quick Start (Local Development)
 ### Prerequisites
-- [Node.js](https://nodejs.org/) v18+
-- [Python](https://python.org/) 3.10+
-- [Git](https://git-scm.com/)
-
-### 1. Clone the repo
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [Python](https://python.org/) (v3.10 or higher)
+- [MongoDB Atlas](https://mongodb.com/atlas) Account or Local MongoDB Instance
+- [Cloudinary](https://cloudinary.com/) Account
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/satyamkumar052/IntelliCar.git
-cd intellicar
+cd IntelliCar
 ```
-
-### 2. Setup Backend
+### 2. Setup the Backend
 ```bash
 cd backend
 npm install
-cp .env.example .env   # Fill in your own credentials
-node server.js
+# Create environment variables file
+cp .env.example .env
 ```
-
-### 3. Setup Frontend
+Edit `backend/.env` with your actual MongoDB URI, Cloudinary credentials, SMTP settings, etc.
+```bash
+npm run dev
+```
+### 3. Setup the Frontend
+Open a new terminal window:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-
-### 4. Setup AI Service
+### 4. Setup the AI Service
+Open a third terminal window:
 ```bash
 cd ai-service
+# Install Python dependencies
 pip install -r requirements.txt
-py train_model.py       # Run once to generate ML model
-py -m uvicorn main:app --reload
+# Run once to train and generate the ML model
+python train_model.py
+# Start the FastAPI server
+python -m uvicorn main:app --reload
 ```
 
 ---
+
 
 ## 🔐 Environment Variables
 
