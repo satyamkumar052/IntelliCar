@@ -19,6 +19,7 @@ import paymentRoutes from './routes/payments.js';
 import locationRoutes from './routes/location.js';
 import adminRoutes from './routes/admin.js';
 import chatRoutes from './routes/chat.js';
+import forumRoutes from './routes/forum.js';
 
 // Load env vars
 dotenv.config();
@@ -45,6 +46,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/forum', forumRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

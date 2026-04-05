@@ -48,6 +48,7 @@ const Navbar = () => {
                 ['/location', 'LOCATOR'],
                 ['/chatbot', 'CHAT'],
                 ['/payments', 'PAYMENTS'],
+                ['/forum', 'FORUM'],
                 ['/profile', 'PROFILE'],
               ].map(([to, label]) => (
                 <Link

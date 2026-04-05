@@ -13,6 +13,8 @@ import LocationFinder from './pages/LocationFinder';
 import Chatbot from './pages/Chatbot';
 import PaymentTracker from './pages/PaymentTracker';
 import Profile from './pages/Profile';
+import Forum from './pages/Forum';
+import DiscussionDetail from './pages/DiscussionDetail';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setLoading } from './store/authSlice';
@@ -49,6 +51,8 @@ function App() {
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/payments" element={<PaymentTracker />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/forum" element={<Forum />} />
+            <Route path="/forum/:id" element={<DiscussionDetail />} />
           </Route>
         </Routes>
       </main>

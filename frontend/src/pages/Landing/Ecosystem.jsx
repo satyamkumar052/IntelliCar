@@ -1,5 +1,5 @@
 import React from 'react';
-import { Car, FileText, Bell, MapPin, MessageSquare, Wallet } from 'lucide-react';
+import { Car, FileText, Bell, MapPin, MessageSquare, Wallet, Users } from 'lucide-react';
 
 const Ecosystem = () => {
     return (
@@ -58,6 +58,14 @@ const Ecosystem = () => {
                         </div>
                         <h3 className="text-xl font-heading font-semibold mb-3 text-white">Payment Tracker</h3>
                         <p className="text-secondary text-sm leading-relaxed">Unified ledger for toll payments, fuel expenses, and maintenance costs.</p>
+                    </div>
+                    
+                    <div className="glass-card p-6 border border-outline-variant/20 group hover:-translate-y-1 hover:border-primary/40 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                        <div className="w-10 h-10 rounded-md bg-surface-bright flex items-center justify-center mb-5 text-primary">
+                            <Users size={18} />
+                        </div>
+                        <h3 className="text-xl font-heading font-semibold mb-3 text-white">Community Forum</h3>
+                        <p className="text-secondary text-sm leading-relaxed">Connect with verified mechanics and performance car owners to troubleshoot and share advice.</p>
                     </div>
                 </div>
             </div>
