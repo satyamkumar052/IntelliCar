@@ -91,14 +91,59 @@ python -m uvicorn main:app --reload
 
 ---
 
-
 ## 🔐 Environment Variables
+You need to configure the following environment variables to run the project. Use the provided `.env.example` file in the `backend` directory as a template.
+### Backend (`backend/.env`)
+```env
+# Server
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/intellicar
+JWT_SECRET=your_super_secret_jwt_key
+# AI Service Connection
+AI_SERVICE_URL=http://localhost:8000
+# Cloudinary Integration (for document uploads)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+# Email Alerts (Nodemailer)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+# External APIs
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+```
+### Frontend (`frontend/.env`)
+*(Create this if `.env` does not exist in frontend)*
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
-Create `backend/.env` using `backend/.env.example` as a template.
+---
 
-You will need:
-- **MongoDB Atlas** URI (free at [mongodb.com/atlas](https://mongodb.com/atlas))
-- **Cloudinary** account for document uploads
-
+## 📁 Project Structure
+```text
+IntelliCar/
+├── ai-service/        # Python FastAPI application for ML & NLP
+│   ├── data/          # Datasets for ML
+│   ├── models/        # Trained AI models
+│   ├── routers/       # API endpoints (FastAPI)
+│   ├── services/      # Business logic (OCR, NLP processing)
+│   ├── main.py        # FastAPI entry point
+│   └── train_model.py # ML model training script
+├── backend/           # Node.js/Express API
+│   ├── controllers/   # Request handlers
+│   ├── jobs/          # Cron jobs (e.g., expiry reminders)
+│   ├── middleware/    # Auth & Security middlewares
+│   ├── models/        # Mongoose Database schemas
+│   ├── routes/        # API routing
+│   ├── utils/         # Helper functions
+│   └── server.js      # Express entry point
+└── frontend/          # React Vite application
+    ├── public/        # Static assets
+    ├── src/           # React components, pages, Redux store
+    ├── index.html     # HTML entry point
+    └── vite.config.js # Vite configuration
+```
 
 ---
