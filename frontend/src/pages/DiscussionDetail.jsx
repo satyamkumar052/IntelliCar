@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api';
-import { Loader2, ArrowLeft, User as UserIcon, Calendar, Reply, MessageCircle, CheckCircle } from 'lucide-react';
+import { Loader2, ArrowLeft, User as UserIcon, Calendar, Reply, MessageCircle, CheckCircle, AlertTriangle, X } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ const DiscussionDetail = () => {
   const [loading, setLoading] = useState(true);
   const [replyContent, setReplyContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [showResolveModal, setShowResolveModal] = useState(false);
 
   useEffect(() => {
     fetchThread();
@@ -79,8 +80,8 @@ const DiscussionDetail = () => {
     }
   };
 
-  const handleResolve = async () => {
-    if (!window.confirm("Are you sure you want to mark this discussion as solved? No further replies will be allowed.")) return;
+  const confirmResolve = async () => {
+    setShowResolveModal(false);
     try {
       await api.put(`/forum/${id}/resolve`);
       toast.success("Discussion marked as solved!");
@@ -131,7 +132,7 @@ const DiscussionDetail = () => {
           ) : <div />}
           
           {user && post.author?._id === user._id && !post.isResolved && (
-            <button onClick={handleResolve} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 border border-white/10 hover:border-emerald-500/20 text-slate-300 rounded-lg text-sm font-semibold transition-all">
+            <button onClick={() => setShowResolveModal(true)} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 border border-white/10 hover:border-emerald-500/20 text-slate-300 rounded-lg text-sm font-semibold transition-all">
               <CheckCircle size={16} /> Mark as Solved
             </button>
           )}
@@ -203,6 +204,37 @@ const DiscussionDetail = () => {
           </form>
         )}
       </div>
+
+      {/* Resolve Confirmation Modal */}
+      {showResolveModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-surface-lowest border border-white/10 p-6 rounded-2xl shadow-2xl max-w-md w-full animate-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex items-center gap-3 text-emerald-400">
+                <div className="p-2 bg-emerald-500/10 rounded-full">
+                  <AlertTriangle size={24} />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-white">Mark as Solved?</h3>
+              </div>
+              <button onClick={() => setShowResolveModal(false)} className="text-slate-400 hover:text-white transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            <p className="text-slate-300 mb-6 leading-relaxed">
+              Are you sure you want to mark this discussion as solved? <br/>
+              <span className="text-red-400 font-semibold text-sm mt-2 block">This action is permanent and will prevent any further replies.</span>
+            </p>
+            <div className="flex justify-end gap-3">
+              <button onClick={() => setShowResolveModal(false)} className="px-5 py-2 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                Cancel
+              </button>
+              <button onClick={confirmResolve} className="px-5 py-2 rounded-lg font-semibold text-sm bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2">
+                <CheckCircle size={16} /> Yes, Mark Solved
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
