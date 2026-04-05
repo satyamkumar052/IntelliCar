@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api';
-import { Loader2, ArrowLeft, User as UserIcon, Calendar, Reply, MessageCircle } from 'lucide-react';
+import { Loader2, ArrowLeft, User as UserIcon, Calendar, Reply, MessageCircle, CheckCircle } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { io } from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 const DiscussionDetail = () => {
   const { id } = useParams();
+  const { user } = useSelector(state => state.auth);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [replyContent, setReplyContent] = useState('');
@@ -13,6 +16,40 @@ const DiscussionDetail = () => {
 
   useEffect(() => {
     fetchThread();
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const socketUrl = apiUrl.endsWith('/api') ? apiUrl.slice(0, -4) : apiUrl;
+    const socket = io(socketUrl);
+
+    socket.on('new_reply', (payload) => {
+      if (payload.discussionId === id) {
+        setData(prevData => {
+          if (!prevData) return prevData;
+          const alreadyExists = prevData.replies.some(r => r._id === payload.reply._id);
+          if (alreadyExists) return prevData;
+          return {
+            ...prevData,
+            replies: [...prevData.replies, payload.reply]
+          };
+        });
+      }
+    });
+
+    socket.on('discussion_resolved', (payload) => {
+      if (payload.discussionId === id) {
+        setData(prevData => {
+          if (!prevData) return prevData;
+          return {
+            ...prevData,
+            post: { ...prevData.post, isResolved: true }
+          };
+        });
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, [id]);
 
   const fetchThread = async () => {
@@ -35,11 +72,21 @@ const DiscussionDetail = () => {
       await api.post(`/forum/${id}/reply`, { content: replyContent });
       setReplyContent('');
       fetchThread();
-      toast.success('Reply posted!');
     } catch (err) {
       toast.error(err.response?.data?.message || err.message || "Error posting reply.");
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleResolve = async () => {
+    if (!window.confirm("Are you sure you want to mark this discussion as solved? No further replies will be allowed.")) return;
+    try {
+      await api.put(`/forum/${id}/resolve`);
+      toast.success("Discussion marked as solved!");
+      fetchThread();
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message || "Error resolving discussion.");
     }
   };
 
@@ -55,8 +102,13 @@ const DiscussionDetail = () => {
       </Link>
 
       {/* Main Post */}
-      <div className="glass-card p-6 md:p-8 mb-8 border-t-4 border-t-primary">
-        <h1 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">{post.title}</h1>
+      <div className="glass-card p-6 md:p-8 mb-8 border-t-4 border-t-primary relative">
+        {post.isResolved && (
+          <div className="absolute top-0 right-0 m-6 flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+            <CheckCircle size={14} /> Solved
+          </div>
+        )}
+        <h1 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 pr-32">{post.title}</h1>
         
         <div className="flex flex-wrap items-center gap-4 text-sm text-secondary/80 mb-6 border-b border-white/5 pb-6">
           <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full"><UserIcon size={14} /> {post.author?.name || 'Unknown User'}</span>
@@ -67,15 +119,23 @@ const DiscussionDetail = () => {
           {post.content}
         </div>
 
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex gap-2 mt-8 pt-4 border-t border-white/5">
-            {post.tags.map(tag => (
-              <span key={tag} className="bg-sky-500/10 text-sky-400 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase border border-sky-500/20">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-8 pt-4 border-t border-white/5 gap-4">
+          {post.tags && post.tags.length > 0 ? (
+            <div className="flex gap-2">
+              {post.tags.map(tag => (
+                <span key={tag} className="bg-sky-500/10 text-sky-400 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase border border-sky-500/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : <div />}
+          
+          {user && post.author?._id === user._id && !post.isResolved && (
+            <button onClick={handleResolve} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 border border-white/10 hover:border-emerald-500/20 text-slate-300 rounded-lg text-sm font-semibold transition-all">
+              <CheckCircle size={16} /> Mark as Solved
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Replies Section */}
@@ -90,22 +150,27 @@ const DiscussionDetail = () => {
             No replies yet. Start the conversation!
           </div>
         ) : (
-          replies.map((reply, idx) => (
-            <div key={reply._id} className="bg-surface-lowest p-6 rounded-2xl border border-white/5 relative">
-              <div className="flex items-center gap-3 mb-3 pb-3 border-b border-white/5">
-                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white shadow-lg">
-                    {reply.author?.name?.[0]?.toUpperCase() || 'U'}
-                 </div>
-                 <div>
-                   <div className="font-semibold text-slate-200">{reply.author?.name || 'Unknown User'}</div>
-                   <div className="text-xs text-slate-500">{new Date(reply.createdAt).toLocaleDateString()} at {new Date(reply.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                 </div>
+          replies.map((reply, idx) => {
+            const isOwnReply = user && (reply.author?._id === user._id);
+            return (
+              <div key={reply._id} className={`flex ${isOwnReply ? 'justify-end' : 'justify-start'}`}>
+                <div className={`p-5 rounded-2xl border relative w-full sm:w-[85%] md:w-[75%] ${isOwnReply ? 'bg-sky-500/10 border-sky-500/20 rounded-tr-md' : 'bg-surface-lowest border-white/5 rounded-tl-md'}`}>
+                  <div className={`flex items-center gap-3 mb-3 pb-3 border-b ${isOwnReply ? 'border-sky-500/20' : 'border-white/5'}`}>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white shadow-lg shrink-0">
+                        {reply.author?.name?.[0]?.toUpperCase() || 'U'}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-200">{isOwnReply ? 'You' : (reply.author?.name || 'Unknown User')}</div>
+                      <div className="text-xs text-slate-500">{new Date(reply.createdAt).toLocaleDateString()} at {new Date(reply.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                    </div>
+                  </div>
+                  <div className="text-slate-200 whitespace-pre-wrap text-sm leading-relaxed">
+                    {reply.content}
+                  </div>
+                </div>
               </div>
-              <div className="text-slate-300 whitespace-pre-wrap text-sm leading-relaxed">
-                {reply.content}
-              </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
 
@@ -113,20 +178,30 @@ const DiscussionDetail = () => {
       <div className="glass-card p-6 border border-white/10 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none text-primary"><Reply size={100} /></div>
         <h3 className="text-lg font-heading font-bold text-white mb-4 relative z-10">Add a Reply</h3>
-        <form onSubmit={handleAddReply} className="relative z-10">
-          <textarea 
-            className="input-glow w-full min-h-[100px] resize-y mb-4" 
-            placeholder="Write your advice or comment here..."
-            value={replyContent}
-            onChange={e => setReplyContent(e.target.value)}
-            required
-          />
-          <div className="flex justify-end">
-            <button disabled={submitting} type="submit" className="btn-primary shrink-0 gap-2 flex items-center px-6">
-              {submitting ? <Loader2 size={16} className="animate-spin" /> : <><Reply size={16} /> Post Reply</>}
-            </button>
+        {post.isResolved ? (
+          <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl flex items-center gap-3 text-emerald-400 relative z-10">
+            <CheckCircle size={20} />
+            <div>
+              <h4 className="font-bold">Discussion Solved</h4>
+              <p className="text-sm opacity-90">The author has marked this discussion as solved. No further replies can be added.</p>
+            </div>
           </div>
-        </form>
+        ) : (
+          <form onSubmit={handleAddReply} className="relative z-10">
+            <textarea 
+              className="input-glow w-full min-h-[100px] resize-y mb-4" 
+              placeholder="Write your advice or comment here..."
+              value={replyContent}
+              onChange={e => setReplyContent(e.target.value)}
+              required
+            />
+            <div className="flex justify-end">
+              <button disabled={submitting} type="submit" className="btn-primary shrink-0 gap-2 flex items-center px-6">
+                {submitting ? <Loader2 size={16} className="animate-spin" /> : <><Reply size={16} /> Post Reply</>}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
 
     </div>

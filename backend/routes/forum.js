@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPosts, createPost, getPostById, addReply } from '../controllers/forumController.js';
+import { getPosts, createPost, getPostById, addReply, resolvePost } from '../controllers/forumController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -13,5 +13,8 @@ router.route('/:id')
 
 router.route('/:id/reply')
   .post(protect, addReply);
+
+router.route('/:id/resolve')
+  .put(protect, resolvePost);
 
 export default router;

@@ -22,6 +22,10 @@ const ForumPostSchema = new mongoose.Schema(
         trim: true,
       },
     ],
+    isResolved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

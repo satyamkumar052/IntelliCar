@@ -43,6 +43,11 @@ export const createPost = async (req, res) => {
 
     const populatedPost = await ForumPost.findById(post._id).populate('author', 'name _id');
 
+    const io = req.app.get('io');
+    if (io) {
+      io.emit('new_discussion', { ...populatedPost._doc, replyCount: 0 });
+    }
+
     res.status(201).json({ success: true, data: populatedPost });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -86,6 +91,10 @@ export const addReply = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Post not found' });
     }
 
+    if (post.isResolved) {
+      return res.status(400).json({ success: false, message: 'Discussion is marked as solved and cannot accept new replies.' });
+    }
+
     const reply = await ForumReply.create({
       post: req.params.id,
       content,
@@ -94,7 +103,40 @@ export const addReply = async (req, res) => {
 
     const populatedReply = await ForumReply.findById(reply._id).populate('author', 'name _id');
 
+    const io = req.app.get('io');
+    if (io) {
+      io.emit('new_reply', { discussionId: req.params.id, reply: populatedReply });
+    }
+
     res.status(201).json({ success: true, data: populatedReply });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Mark post as resolved
+// @route   PUT /api/forum/:id/resolve
+// @access  Private
+export const resolvePost = async (req, res) => {
+  try {
+    const post = await ForumPost.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+
+    if (post.author.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ success: false, message: 'Not authorized to resolve this discussion' });
+    }
+
+    post.isResolved = true;
+    await post.save();
+
+    const io = req.app.get('io');
+    if (io) {
+      io.emit('discussion_resolved', { discussionId: post._id });
+    }
+
+    res.json({ success: true, message: 'Discussion marked as solved' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

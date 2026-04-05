@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
-import { Loader2, MessageSquarePlus, MessageCircle, User as UserIcon, Calendar } from 'lucide-react';
+import { Loader2, MessageSquarePlus, MessageCircle, User as UserIcon, Calendar, CheckCircle } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { io } from 'socket.io-client';
 
 const Forum = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +15,39 @@ const Forum = () => {
 
   useEffect(() => {
     fetchPosts();
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const socketUrl = apiUrl.endsWith('/api') ? apiUrl.slice(0, -4) : apiUrl;
+    const socket = io(socketUrl);
+
+    socket.on('new_discussion', (payload) => {
+        setPosts(prevPosts => {
+            const alreadyExists = prevPosts.some(p => p._id === payload._id);
+            if (alreadyExists) return prevPosts;
+            return [payload, ...prevPosts];
+        });
+    });
+
+    socket.on('discussion_resolved', (payload) => {
+        setPosts(prevPosts => prevPosts.map(p => 
+            p._id === payload.discussionId ? { ...p, isResolved: true } : p
+        ));
+    });
+
+    socket.on('new_reply', (payload) => {
+        setPosts(prevPosts => {
+            return prevPosts.map(p => {
+                if (p._id === payload.discussionId) {
+                    return { ...p, replyCount: (p.replyCount || 0) + 1 };
+                }
+                return p;
+            });
+        });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const fetchPosts = async () => {
@@ -107,7 +141,14 @@ const Forum = () => {
             <Link key={post._id} to={`/forum/${post._id}`} className="block no-underline">
               <div className="glass-card p-5 border-l-4 border-transparent hover:border-primary transition-all group flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                 <div className="flex-grow">
-                  <h3 className="text-xl font-heading font-bold text-white mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-xl font-heading font-bold text-white group-hover:text-primary transition-colors">{post.title}</h3>
+                    {post.isResolved && (
+                        <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                            <CheckCircle size={10} /> Solved
+                        </span>
+                    )}
+                  </div>
                   <p className="text-sm text-secondary line-clamp-2 mb-3 max-w-4xl">{post.content}</p>
                   
                   <div className="flex flex-wrap items-center gap-4 text-xs text-secondary/80">
