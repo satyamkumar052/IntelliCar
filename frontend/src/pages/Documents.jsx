@@ -140,10 +140,16 @@ const Documents = () => {
               <div>
                 <label className="text-xs text-secondary uppercase tracking-wider font-semibold">Document Type</label>
                 <select className="input-glow w-full mt-1 bg-surface-lowest text-white" value={docType} onChange={e => setDocType(e.target.value)}>
-                  <option value="RC">RC</option>
+                  <option value="RC">Vehicle RC</option>
                   <option value="Insurance">Insurance</option>
-                  <option value="PUC">PUC</option>
-                  <option value="License">License</option>
+                  <option value="PUC">PUC (Pollution)</option>
+                  <option value="License">Driving License</option>
+                  <option value="RoadTax">Road Tax Receipt</option>
+                  <option value="Challan">Traffic Challan</option>
+                  <option value="PurchaseInvoice">Purchase Invoice</option>
+                  <option value="ServiceRecord">Service Record</option>
+                  <option value="Warranty">Warranty Document</option>
+                  <option value="Other">Other Document</option>
                 </select>
               </div>
               <div>

@@ -12,6 +12,7 @@ import Recommendation from './pages/Recommendation';
 import LocationFinder from './pages/LocationFinder';
 import Chatbot from './pages/Chatbot';
 import PaymentTracker from './pages/PaymentTracker';
+import Profile from './pages/Profile';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setLoading } from './store/authSlice';
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-surface text-gray-100 font-body">
-      <ToastContainer hideProgressBar theme="dark" position="top-center" autoClose={2000} />
+      <ToastContainer position="top-left" hideProgressBar theme="dark" autoClose={2000} />
       <Navbar />
       <main className="flex-grow pt-16">
         <Routes>
@@ -47,6 +48,7 @@ function App() {
             <Route path="/location" element={<LocationFinder />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/payments" element={<PaymentTracker />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </main>

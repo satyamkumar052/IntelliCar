@@ -84,9 +84,9 @@ cd ai-service
 # Install Python dependencies
 pip install -r requirements.txt
 # Run once to train and generate the ML model
-python train_model.py
+py train_model.py
 # Start the FastAPI server
-python -m uvicorn main:app --reload
+py -m uvicorn main:app --reload
 ```
 
 ---

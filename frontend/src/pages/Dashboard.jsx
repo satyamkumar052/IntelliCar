@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import api from '../api';
 import { Link } from 'react-router-dom';
-import { Car, FileText, Bell, MapPin, ShieldAlert, CheckCircle2, AlertTriangle, ArrowRight, Activity } from 'lucide-react';
+import { Car, FileText, Bell, MapPin, ShieldAlert, CheckCircle2, AlertTriangle, ArrowRight, Activity, Shield, Target, Award, ChevronRight } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 const Dashboard = () => {
@@ -12,7 +12,10 @@ const Dashboard = () => {
     cars: 0, 
     totalDocs: 0, 
     reminders: [],
-    docHealth: { valid: 0, expiring: 0, expired: 0 }
+    docHealth: { valid: 0, expiring: 0, expired: 0 },
+    securityScore: 0,
+    securityRank: 'Rookie',
+    recommendations: []
   });
   
   const [loading, setLoading] = useState(true);
@@ -47,11 +50,74 @@ const Dashboard = () => {
         // Filter reminders: only active or upcoming (can refine further based on logic, assuming backend returns relevant ones)
         const reminders = remRes.data.data;
 
+        // --- New Weighted Score Calculation ---
+        let score = 10; // 10% Base for having an account
+        let recommendations = [];
+        
+        // Profile Completion (10%)
+        if (user?.phone) score += 5;
+        else recommendations.push({ id: 'p1', text: "Add phone number for emergency alerts", action: "Update Profile", link: "/profile", icon: "User" });
+        
+        if (user?.address) score += 5;
+        else recommendations.push({ id: 'p2', text: "Set primary address for local service matching", action: "Update Profile", link: "/profile", icon: "MapPin" });
+
+        const docTypesPresent = new Set();
+        docsResponses.forEach(res => {
+          res.data.data.forEach(d => docTypesPresent.add(d.docType));
+        });
+
+        // Identity (20%)
+        if (docTypesPresent.has("License")) {
+          score += 20;
+        } else {
+          recommendations.push({ id: 'd2', text: "Upload your Driving License to verify operator status", action: "Upload", link: "/documents", icon: "Target" });
+        }
+
+        // Fleet Foundation (25%)
+        if (cars.length > 0) {
+          score += 10; // 10% for adding first car
+          
+          if (docTypesPresent.has("RC")) {
+            score += 15;
+          } else {
+            recommendations.push({ id: 'd3', text: "Upload Vehicle RC (Registration Certificate)", action: "Upload", link: "/documents", icon: "Target" });
+          }
+        } else {
+          recommendations.push({ id: 'c1', text: "Register your first vehicle to start monitoring", action: "Add Vehicle", link: "/my-cars", icon: "Car" });
+        }
+
+        // Road Safety (35%)
+        if (cars.length > 0) {
+          if (docTypesPresent.has("Insurance")) {
+            score += 20;
+          } else {
+            recommendations.push({ id: 'd4', text: "Add core insurance policy to reach Protected status", action: "Upload", link: "/documents", icon: "Target" });
+          }
+
+          if (docTypesPresent.has("PUC")) {
+            score += 15;
+          } else {
+            recommendations.push({ id: 'd5', text: "Upload Pollution (PUC) certificate", action: "Upload", link: "/documents", icon: "Target" });
+          }
+        }
+
+        // Cap at 100
+        score = Math.min(score, 100);
+
+        // Determine Rank
+        let rank = 'Rookie';
+        if (score >= 100) rank = 'Fleet Master';
+        else if (score >= 75) rank = 'Safe Driver';
+        else if (score >= 40) rank = 'Protected';
+
         setStats({
           cars: cars.length,
           totalDocs,
           reminders,
-          docHealth: { valid, expiring, expired }
+          docHealth: { valid, expiring, expired },
+          securityScore: score,
+          securityRank: rank,
+          recommendations
         });
       } catch (err) {
         console.error("Dashboard fetch error:", err);
@@ -154,8 +220,91 @@ const Dashboard = () => {
 
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 pt-4">
         
+        {/* Profile Security Score */}
+        <div className="glass-card p-8 col-span-1 border border-outline-variant/10 flex flex-col group hover:border-primary/20 transition-all duration-300 relative overflow-hidden">
+          <div className="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none z-0">
+            <Shield size={180} />
+          </div>
+          
+          <div className="flex justify-between items-center mb-6 relative z-10">
+            <h3 className="text-xl font-heading font-bold text-white flex items-center gap-2">
+              <Shield size={20} className="text-primary" />
+              Profile Security
+            </h3>
+          </div>
+          
+          <div className="flex-grow flex flex-col items-center justify-center mb-6 relative z-10">
+            <div className="relative flex items-center justify-center">
+              <svg className="w-32 h-32 transform -rotate-90 drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                <circle
+                  className="text-surface-container-highest"
+                  strokeWidth="10"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="52"
+                  cx="64"
+                  cy="64"
+                />
+                <circle
+                  className={stats.securityScore === 100 ? "text-green-500" : stats.securityScore >= 60 ? "text-blue-500" : "text-amber-500"}
+                  strokeWidth="10"
+                  strokeDasharray={2 * Math.PI * 52}
+                  strokeDashoffset={(2 * Math.PI * 52) - ((stats.securityScore || 0) / 100) * (2 * Math.PI * 52)}
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="52"
+                  cx="64"
+                  cy="64"
+                  style={{ transition: 'stroke-dashoffset 1.5s ease-in-out' }}
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-heading font-bold text-white">{stats.securityScore || 0}%</span>
+                <span className="text-[9px] uppercase tracking-wider text-secondary font-bold">Secure</span>
+              </div>
+            </div>
+            
+            <div className="mt-4 text-center z-10 w-full flex justify-center">
+              <div className={`flex items-center gap-1.5 justify-center bg-opacity-10 px-3 py-1.5 rounded-full border border-opacity-20 shadow-sm
+                ${stats.securityRank === 'Fleet Master' ? "text-green-400 bg-green-500 border-green-500" : 
+                  stats.securityRank === 'Safe Driver' ? "text-blue-400 bg-blue-500 border-blue-500" :
+                  stats.securityRank === 'Protected' ? "text-indigo-400 bg-indigo-500 border-indigo-500" :
+                  "text-amber-400 bg-amber-500 border-amber-500"
+                }`}>
+                {stats.securityRank === 'Fleet Master' ? <Award size={14} /> : <Shield size={14} />}
+                <span className="text-xs font-bold uppercase tracking-wide">{stats.securityRank}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-auto z-10 w-full">
+            {stats.recommendations && stats.recommendations.length > 0 ? (
+              <div className="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10 shadow-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Target size={14} className="text-amber-400" />
+                    <span className="text-[10px] font-bold text-secondary uppercase tracking-wider">Next Goal</span>
+                  </div>
+                  <span className="text-[10px] text-primary/80 font-bold bg-primary/10 px-2 py-0.5 rounded-full">+20%</span>
+                </div>
+                <p className="text-sm font-medium text-white mb-3 leading-snug">
+                  {stats.recommendations[0].text}
+                </p>
+                <Link to={stats.recommendations[0].link} className="flex items-center justify-center gap-2 w-full py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 rounded-lg text-sm font-medium transition-all group/btn">
+                  {stats.recommendations[0].action} <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            ) : (
+              <div className="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10 text-center shadow-lg">
+                <p className="text-sm text-secondary">Your profile is fully optimized. All critical documents are safeguarded.</p>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Document Health Chart */}
         <div className="glass-card p-8 col-span-1 border border-outline-variant/10 flex flex-col">
           <div className="flex justify-between items-center mb-6">
