@@ -23,6 +23,9 @@ import adminRoutes from './routes/admin.js';
 import chatRoutes from './routes/chat.js';
 import forumRoutes from './routes/forum.js';
 
+import dns from "dns";
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
 // Load env vars
 dotenv.config();
 
@@ -57,7 +60,7 @@ app.get('/', (req, res) => res.send('Hello World'));
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect('mongodb://localhost:27017/intellicar');
+        const conn = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
         console.error(`Error: ${error.message}`);
