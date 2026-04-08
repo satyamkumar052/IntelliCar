@@ -26,6 +26,10 @@ try:
 except ImportError:
     print("Routers not fully initialized yet. Creating stubs.")
 
+@app.get("/", include_in_schema=False)
+def root():
+    return {"message": "IntelliCar AI Service is running. Use /docs for API documentation."}
+
 @app.get("/docs", include_in_schema=False)
 def get_docs():
     return {"message": "Go to /docs or /redoc for Swagger UI"}

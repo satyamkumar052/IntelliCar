@@ -36,7 +36,7 @@ const Recommendation = () => {
     setLoading(true);
     setResults([]);
     try {
-      const aiUrl = import.meta.env.VITE_AI_URL || 'http://localhost:8000';
+      const aiUrl = import.meta.env.VITE_AI_URL || 'https://ai-wa7z.onrender.com';
       const res = await fetch(`${aiUrl}/api/recommend`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
