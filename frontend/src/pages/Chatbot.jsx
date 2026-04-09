@@ -91,7 +91,7 @@ const Chatbot = () => {
           className="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-full py-4 pl-6 pr-16 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors focus:ring-1 focus:ring-primary shadow-glow"
         />
         <button type="submit" disabled={loading} className="absolute right-2 top-2 p-2 rounded-full bg-primary text-surface-lowest hover:bg-primary-container transition-colors disabled:opacity-50">
-          <Send size={18} />
+          <Send size={20} />
         </button>
       </form>
     </div>
