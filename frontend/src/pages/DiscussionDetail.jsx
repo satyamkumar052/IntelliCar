@@ -221,7 +221,7 @@ const DiscussionDetail = () => {
               </button>
             </div>
             <p className="text-slate-300 mb-6 leading-relaxed">
-              Are you sure you want to mark this discussion as solved? <br/>
+              Are you sure you want to mark this discussion as solved?? <br/>
               <span className="text-red-400 font-semibold text-sm mt-2 block">This action is permanent and will prevent any further replies.</span>
             </p>
             <div className="flex justify-end gap-3">
