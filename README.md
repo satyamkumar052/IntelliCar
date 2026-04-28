@@ -121,31 +121,4 @@ VITE_API_URL=http://localhost:5000/api
 
 ---
 
-## 📁 Project Structure
-```text
-IntelliCar/
-├── ai-service/        # Python FastAPI application for ML & NLP
-│   ├── data/          # Datasets for ML
-│   ├── models/        # Trained AI models
-│   ├── routers/       # API endpoints (FastAPI)
-│   ├── services/      # Business logic (OCR, NLP processing)
-│   ├── main.py        # FastAPI entry point
-│   └── train_model.py # ML model training script
-├── backend/           # Node.js/Express API
-│   ├── controllers/   # Request handlers
-│   ├── jobs/          # Cron jobs (e.g., expiry reminders)
-│   ├── middleware/    # Auth & Security middlewares
-│   ├── models/        # Mongoose Database schemas
-│   ├── routes/        # API routing
-│   ├── utils/         # Helper functions
-│   └── server.js      # Express entry point
-└── frontend/          # React Vite application
-    ├── public/        # Static assets
-    ├── src/           # React components, pages, Redux store
-    ├── index.html     # HTML entry point
-    └── vite.config.js # Vite configuration
-```
-
----
-
 Live Link : https://intellicar.vercel.app/
