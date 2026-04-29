@@ -70,7 +70,7 @@ const LocationFinder = () => {
              </p>
              <a 
                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(params.type + ' near ' + params.pincode)}`} 
-               target="_blank" rel="noreferrer"
+               target="_blank" rel="noreferrer noopener"
                className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
              >
                <Search size={18} /> Search directly on Google Maps
@@ -92,7 +92,7 @@ const LocationFinder = () => {
             </div>
             <div className="flex justify-between items-center mt-4 pt-4 border-t border-outline-variant/10">
               <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 rounded tracking-widest">★ {loc.rating || 'N/A'} ({loc.user_ratings_total||0})</span>
-              <a href={loc.maps_link} target="_blank" rel="noreferrer" className="text-white hover:text-primary transition-colors text-sm font-bold flex items-center gap-1 bg-surface-bright px-3 py-1 rounded">
+              <a href={loc.maps_link} target="_blank" rel="noreferrer noopener" className="text-white hover:text-primary transition-colors text-sm font-bold flex items-center gap-1 bg-surface-bright px-3 py-1 rounded">
                 <Navigation size={14} /> NAVIGATE
               </a>
             </div>
