@@ -106,7 +106,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile hamburger */}
-        <button className="md:hidden text-slate-400 hover:text-white p-1 transition-colors">
+        <button className="aria-lavel md:hidden text-slate-400 hover:text-white p-1 transition-colors">
           <Menu size={22} />
         </button>
 
